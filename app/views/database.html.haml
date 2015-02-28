@@ -1,0 +1,9 @@
+%h1 
+  Databaste
+%h2
+  Tables 
+%ul
+-tables.each do |table|
+  %li
+    %a{href: "table/#{table}"}
+      #{table}
