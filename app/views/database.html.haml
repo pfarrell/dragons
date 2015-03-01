@@ -1,9 +1,20 @@
 %h1 
   Databaste
-%h2
-  Tables 
-%ul
--tables.each do |table|
-  %li
-    %a{href: "table/#{table}"}
-      #{table}
+.container
+  .row
+    .col-md-4
+      %h2
+        Tables 
+      %ul
+      -tables.each do |table|
+        %li
+          %a{href: "table/#{table}"}
+            #{table}
+    .col-md-4
+      %h2
+        Routines
+      %ul
+      -routines.each do |routine|
+        %li
+          %a{href: "routine/#{routine}"}
+            #{routine}
