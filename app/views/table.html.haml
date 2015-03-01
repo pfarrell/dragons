@@ -1,3 +1,5 @@
+%h1 #{table_name}
+%h2 Fields
 %table.table
   %thead
     %tr
@@ -15,3 +17,21 @@
               -else
                 %a{href:"#{prop[:link].call(row)}"}
                   =prop[:value].call(row)
+%h2 Indexes
+=indexes.keys
+
+-unless table_data.nil? || table_data.length < 1
+  %h2 Sample Data
+  %table.table
+    %thead
+      %tr
+        -table_data.first.each do |k,v|
+          %th
+            =k
+    %tbody
+      -table_data.each do |row|
+        %tr
+          -row.each do |k,v|
+            %td
+              =v
+   

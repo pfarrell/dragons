@@ -25,6 +25,16 @@
           %li
             %a{href: "#{url_for("/database")}"}
               Database
+          -if connected?
+            %li.dropdown 
+              %a.dropdown-toggle{href: "#", role:"button", aria:{expanded: false}, data:{toggle:"dropdown"}} 
+                Tables
+                %span.caret
+              %ul.dropdown-menu{role:"menu"}
+                -tables.each do |table|
+                  %li
+                    %a{href:"#{url_for("/table/#{table}")}"}
+                      #{table}
     .container#content
       =yield
     .container.footer
