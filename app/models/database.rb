@@ -17,7 +17,7 @@ class Database
   def routines(schema='public')
     Sequel.connect(@conn)[Sequel.qualify("information_schema", "routines")]
       .select(:routine_name)
-      .where(specific_schema: schema)
+      .where(routine_schema: schema)
       .map{|x| x[:routine_name] }
   end
 
