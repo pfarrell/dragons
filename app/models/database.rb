@@ -1,8 +1,9 @@
+require 'json'
 class Database
   attr_accessor :conn
 
   def initialize(conn)
-    @conn=conn
+    @conn= conn=~/^{/ ? JSON.parse(conn) : conn
   end
 
   def tables
