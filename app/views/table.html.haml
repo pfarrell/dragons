@@ -1,26 +1,22 @@
-%h1 #{table_name}
+%h1 #{table.name}
 %h2 Fields
 %table.table
   %thead
     %tr
-      -header.keys.each do |header|
+      -header.each do |header|
         %th
-          =header
+          =header[0]
   %tbody
-    -data.each do |row|
+    -table.columns.each do |defn|
       %tr
-        -header.each do |name,prop|
+        -header.each do |name, prop|
           %td
             .table-data
-              -if prop[:link].nil?
-                =prop[:value].call(row)
-              -else
-                %a{href:"#{prop[:link].call(row)}"}
-                  =prop[:value].call(row)
+              =prop[:value].call(defn)
 %h2 Indexes
-=indexes.keys
+=table.indexes
 
--unless table_data.nil? || table_data.length < 1
+-unless table.data.nil? || table_data.length < 1
   %h2 Sample Data
   %table.table
     %thead
