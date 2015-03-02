@@ -6,7 +6,7 @@
       %h2
         Tables 
       %ul
-      -tables.each do |table|
+      -model.tables.each do |table|
         %li
           %a{href: "table/#{table}"}
             #{table}
@@ -14,7 +14,7 @@
       %h2
         Routines
       %ul
-      -routines.each do |routine|
+      -model.routines.each do |routine|
         %li
           %a{href: "routine/#{routine}"}
             #{routine}

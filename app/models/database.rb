@@ -6,7 +6,7 @@ class Database
   end
 
   def tables
-    Sequel.connect(@conn).tables
+    Sequel.connect(@conn).tables.sort
   end
 
   def table(name)
