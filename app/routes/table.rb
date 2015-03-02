@@ -7,13 +7,7 @@ class App < Sinatra::Application
     props["type"]={value: lambda{|x| x[1][:db_type]}}
     haml :table, locals: {
       header: props,
-      table: table,
-      indexes: [],
-      foreign_keys: [],
-      table_data: []
-      #indexes: table.indexes,
-      #foreign_keys: table.foreign_keys,
-      #table_data: table.data
+      table: table
     }
   end
 

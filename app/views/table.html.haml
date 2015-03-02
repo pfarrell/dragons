@@ -1,5 +1,7 @@
-%h1 #{table.name}
-%h2 Fields
+%h1 
+  #{table.name}
+%h2 
+  Fields
 %table.table
   %thead
     %tr
@@ -13,19 +15,39 @@
           %td
             .table-data
               =prop[:value].call(defn)
-%h2 Indexes
-=table.indexes
-
--unless table.data.nil? || table.data.length < 1
-  %h2 Sample Data
+%h2 
+  Indexes
+-if table.indexes.nil? || table.indexes.length < 1
+  %h3
+    No Indexes
+-else
   %table.table
     %thead
       %tr
-        -table_data.first.each do |k,v|
+        %th
+          Index Name
+        -table.indexes.first[1].each do |k,v|
           %th
             =k
     %tbody
-      -table_data.each do |row|
+      -table.indexes.each do |row|
+        %tr
+          %td
+            =row[0]
+          -row[1].each do |k,v|
+            %td
+              =v
+%h2 
+  Sample Data
+-unless table.data.nil? || table.data.length < 1
+  %table.table
+    %thead
+      %tr
+        -table.data.first.each do |k,v|
+          %th
+            =k
+    %tbody
+      -table.data.each do |row|
         %tr
           -row.each do |k,v|
             %td
