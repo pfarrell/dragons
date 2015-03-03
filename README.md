@@ -17,3 +17,13 @@ Things to come
 * network-graph displays of table relations supporting inferred foreign keys
 * read only queries
 * inline notes
+
+##Install
+
+```
+   brew install freetds
+   bundle install
+   bower install
+   bundle exec rackup
+```
+
