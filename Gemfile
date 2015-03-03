@@ -10,6 +10,7 @@ gem 'sinatra-respond_to'
 gem 'sequel'
 
 gem 'pg'
+gem 'tiny_tds'
 gem 'mysql2'
 
 gem 'haml'
