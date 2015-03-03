@@ -27,6 +27,7 @@
         Stored Procedures
       -if model.routines.nil? || model.routines.count < 1
         No Stored Procedures
+      -else
         %ul
           -model.routines.each do |routine|
             %li
