@@ -4,9 +4,8 @@
       %h2
         Query
       %form{action:"/query", method:"POST"}
-        .query
-          %textarea#query{cols:"150", rows:"15", name:"query"}
-            =query
+        %textarea#query.query{rows:"15", name:"query"}
+          =query
         .submit
           %button.btn.btn-primary{type:"submit", value:"submit"}
             Submit
