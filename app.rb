@@ -17,9 +17,15 @@ class App < Sinatra::Application
   enable :sessions
   set :session_secret, ENV["APP_SESSION_SECRET"] || "youshouldreallychangethis"
   set :views, Proc.new { File.join(root, "app/views") }
+  set :show_exceptions, false
 
   before do
     response.set_cookie(:appc, value: SecureRandom.uuid, expires: Time.now + 3600 * 24 * 365 * 10) if request.cookies["bmc"].nil?
+  end
+
+  error do
+    byebug
+    haml :error, locals: {error: env['sinatra.error'].message}
   end
 
   helpers do
