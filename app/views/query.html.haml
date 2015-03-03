@@ -12,13 +12,13 @@
 -unless results.nil?
   .row
     .col-md-12
-      %h2
+      %h4
         Results
       -unless results.length < 1
         %table.table.table-condensed
           %thead
             %tr
-              -results.first.keys do |k|
+              -results.first.keys.each do |k|
                 %th
                   =k
           %tbody
