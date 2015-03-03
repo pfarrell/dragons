@@ -21,4 +21,8 @@ class Table
   def data(count=50)
     @conn[@name.to_sym].first(count)
   end
+
+  def primary_key
+    columns.select{|x| x[1][:primary_key]}
+  end
 end
