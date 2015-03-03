@@ -14,15 +14,21 @@ class Database
     Table.new(Sequel.connect(@conn), name)
   end
 
+  def default_schema
+    cn = @conn['adapter'] if @conn.class == Hash
+    return 'dbo' if cn =~ /^tinytds/
+    return 'public'
+  end
 
-  def routines(schema='public')
+  def routines(schema=default_schema)
     Sequel.connect(@conn)[Sequel.qualify("information_schema", "routines")]
       .select(:routine_name)
       .where(routine_schema: schema)
       .map{|x| x[:routine_name] }
+      .sort
   end
 
-  def routine(name, schema='public')
+  def routine(name, schema=default_schema)
     Sequel.connect(@conn)[Sequel.qualify("information_schema", "routines")]
       .where({specific_schema: schema, routine_name: name}).first
   end
