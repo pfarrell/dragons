@@ -6,8 +6,9 @@
       %form{action:"/query", method:"POST"}
         .query
           %textarea#query{cols:"150", rows:"15", name:"query"}
+            =query
         .submit
-          %button.button{type:"submit", value:"submit"}
+          %button.btn.btn-primary{type:"submit", value:"submit"}
             Submit
 -unless results.nil?
   .row
