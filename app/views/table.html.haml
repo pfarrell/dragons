@@ -1,55 +1,61 @@
-%h1 
+%h2 
   #{table.name}
-%h2 
-  Fields
-%table.table
-  %thead
-    %tr
-      -header.each do |header|
-        %th
-          =header[0]
-  %tbody
-    -table.columns.each do |defn|
-      %tr
-        -header.each do |name, prop|
-          %td
-            .table-data
-              =prop[:value].call(defn)
-%h2 
-  Indexes
--if table.indexes.nil? || table.indexes.length < 1
-  %h3
-    No Indexes
--else
-  %table.table
-    %thead
-      %tr
-        %th
-          Index Name
-        -table.indexes.first[1].each do |k,v|
-          %th
-            =k
-    %tbody
-      -table.indexes.each do |row|
-        %tr
-          %td
-            =row[0]
-          -row[1].each do |k,v|
-            %td
-              =v
-%h2 
-  Sample Data
--unless table.data.nil? || table.data.length < 1
-  %table.table
-    %thead
-      %tr
-        -table.data.first.each do |k,v|
-          %th
-            =k
-    %tbody
-      -table.data.each do |row|
-        %tr
-          -row.each do |k,v|
-            %td
-              =v
-   
+.container
+  .row
+    .col-md-6
+      %h4 
+        Fields
+      %table.table.table-condensed
+        %thead
+          %tr
+            -header.each do |header|
+              %th
+                =header[0]
+        %tbody
+          -table.columns.each do |defn|
+            %tr
+              -header.each do |name, prop|
+                %td
+                  .table-data
+                    =prop[:value].call(defn)
+    .col-md-6
+      %h4 
+        Indexes
+      -if table.indexes.nil? || table.indexes.length < 1
+        %h3
+          No Indexes
+      -else
+        %table.table.table-condensed
+          %thead
+            %tr
+              %th
+                Index Name
+              -table.indexes.first[1].each do |k,v|
+                %th
+                  =k
+          %tbody
+            -table.indexes.each do |row|
+              %tr
+                %td
+                  =row[0]
+                -row[1].each do |k,v|
+                  %td
+                    =v
+  .row
+    .col-md-12
+      %h4 
+        Sample Data
+      -unless table.data.nil? || table.data.length < 1
+        %table.table.table-condensed
+          %thead
+            %tr
+              -table.data(5).first.each do |k,v|
+                %th
+                  =k
+          %tbody
+            -table.data(5).each do |row|
+              %tr
+                -row.each do |k,v|
+                  %td
+                    =v
+         
