@@ -7,7 +7,6 @@ require 'sinatra/cookies'
 require 'securerandom'
 require 'sequel'
 require 'haml'
-require 'byebug'
 
 class App < Sinatra::Application
   helpers Sinatra::UrlForHelper
@@ -24,7 +23,6 @@ class App < Sinatra::Application
   end
 
   error do
-    byebug
     haml :error, locals: {error: env['sinatra.error'].message}
   end
 
