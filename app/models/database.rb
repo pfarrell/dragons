@@ -36,4 +36,8 @@ class Database
     Sequel.connect(@conn)[Sequel.qualify("information_schema", "routines")]
       .where({specific_schema: schema, routine_name: name}).first
   end
+
+  def run_query(query)
+    Sequel.connect(@conn).fetch(query)
+  end
 end

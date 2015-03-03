@@ -53,6 +53,9 @@
                   %li
                     %a{href:"#{url_for("/routine/#{routine}")}"}
                       #{routine}
+            %li
+              %a{href:"#{url_for("/query")}"}
+                Query
     .container#content
       =yield
     .container.footer

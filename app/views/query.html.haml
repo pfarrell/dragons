@@ -1,0 +1,31 @@
+.container
+  .row
+    .col-md-12
+      %h2
+        Query
+      %form{action:"/query", method:"POST"}
+        .query
+          %textarea#query{cols:"150", rows:"15", name:"query"}
+        .submit
+          %button.button{type:"submit", value:"submit"}
+            Submit
+-unless results.nil?
+  .row
+    .col-md-12
+      %h2
+        Results
+      -unless results.length < 1
+        %table.table.table-condensed
+          %thead
+            %tr
+              -results.first.keys do |k|
+                %th
+                  =k
+          %tbody
+            -results.each do |row|
+              %tr
+                -row.each do |k,v|
+                  %td
+                    =v
+         
+        
