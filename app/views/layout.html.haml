@@ -35,6 +35,24 @@
                   %li
                     %a{href:"#{url_for("/table/#{table}")}"}
                       #{table}
+            %li.dropdown 
+              %a.dropdown-toggle{href: "#", role:"button", aria:{expanded: false}, data:{toggle:"dropdown"}} 
+                Views
+                %span.caret
+              %ul.dropdown-menu{role:"menu"}
+                -views.each do |view|
+                  %li
+                    %a{href:"#{url_for("/view/#{view}")}"}
+                      #{view}
+            %li.dropdown 
+              %a.dropdown-toggle{href: "#", role:"button", aria:{expanded: false}, data:{toggle:"dropdown"}} 
+                Routines
+                %span.caret
+              %ul.dropdown-menu{role:"menu"}
+                -routines.each do |routine|
+                  %li
+                    %a{href:"#{url_for("/routine/#{routine}")}"}
+                      #{routine}
     .container#content
       =yield
     .container.footer
