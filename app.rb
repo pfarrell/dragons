@@ -30,6 +30,14 @@ class App < Sinatra::Application
     def tables
       session[:db].tables if connected?
     end
+
+    def views
+      session[:db].views if connected?
+    end
+
+    def routines
+      session[:db].routines if connected?
+    end
   end
 end
 

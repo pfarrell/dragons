@@ -20,6 +20,10 @@ class Database
     return 'public'
   end
 
+  def views
+    Sequel.connect(@conn).views.sort
+  end
+
   def routines(schema=default_schema)
     Sequel.connect(@conn)[Sequel.qualify("information_schema", "routines")]
       .select(:routine_name)

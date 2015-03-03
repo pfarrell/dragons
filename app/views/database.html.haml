@@ -3,18 +3,29 @@
 .container
   .row
     .col-md-4
-      %h2
+      %h4
         Tables 
-      %ul
-      -model.tables.each do |table|
-        %li
-          %a{href: "table/#{table}"}
-            #{table}
+      %ul.list
+        -model.tables.each do |table|
+          %li
+            %a.tablename{href: "table/#{table}"}
+              #{table}
     .col-md-4
-      %h2
+      %h4
+        Views
+      %ul.list
+        -model.views.each do |view|
+          %li
+            %a.view{href: "view/#{view}"}
+              #{view}
+    .col-md-4
+      %h4
         Routines
       %ul
-      -model.routines.each do |routine|
-        %li
-          %a{href: "routine/#{routine}"}
-            #{routine}
+        -model.routines.each do |routine|
+          %li
+            %a.routine{href: "routine/#{routine}"}
+              #{routine}
+:javascript
+  var options = {valueNames: [ 'tablename' ] };
+  var tableList = new List('databasetables', options);
