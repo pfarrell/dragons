@@ -23,10 +23,10 @@
           Dragons
       .collapse.navbar-collapse#navbar-collapse
         %ul.nav.navbar-nav
-          %li
-            %a{href: "#{url_for("/database")}"}
-              Database
           -if connected?
+            %li
+              %a{href: "#{url_for("/database")}"}
+                Database
             -unless tables.nil? || tables.count < 1
               %li.dropdown 
                 %a.dropdown-toggle{href: "#", role:"button", aria:{expanded: false}, data:{toggle:"dropdown"}} 
