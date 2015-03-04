@@ -60,9 +60,13 @@
             %li
               %a{href:"#{url_for("/query")}"}
                 Query
+            %li
+              %a{href:"#{url_for("/")}"}
+                Logout
     .container#content
       =yield
     .container.footer
+      %hr
       A 
       %a{href:"https://patf.net"}
         patf
