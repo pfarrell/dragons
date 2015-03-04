@@ -40,4 +40,10 @@ class Database
   def run_query(query)
     Sequel.connect(@conn).fetch(query)
   end
+
+  def columns
+    require 'byebug'
+    byebug
+    Sequel.connect(@conn).fetch("Select table_name, column_name from information_schema.columns where table_schema = '#{default_schema}'")
+  end
 end

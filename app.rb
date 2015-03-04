@@ -42,6 +42,10 @@ class App < Sinatra::Application
     def routines
       session[:db].routines if connected?
     end
+
+    def columns
+      session[:db].columns if connected?
+    end
   end
 end
 

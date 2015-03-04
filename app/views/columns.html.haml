@@ -1,0 +1,21 @@
+%table.table.table-condensed
+  %thead
+    %th
+      Column Name
+    %th
+      Tables
+    %th
+      Count
+  %tbody
+    -columns.each do |column, tables|
+      %tr
+        %td
+          =column
+        %td
+          -tables.each_with_index do |table, i|
+            %a{href: "#{url_for("/table/#{table}")}"}
+              #{table}
+              -unless i == tables.size - 1
+                ,
+        %td
+          =tables.size
