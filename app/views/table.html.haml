@@ -45,11 +45,7 @@
     .col-md-12
       %h4 
         Sample Data
-      -if table.data.nil? || table.data.length < 1
-        %h5
-          No Data in table
-      -else
-     :q
+      -unless table.data.nil? || table.data.length < 1
         %table.table.table-condensed
           %thead
             %tr
