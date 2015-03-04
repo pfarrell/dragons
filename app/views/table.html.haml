@@ -8,13 +8,13 @@
       %table.table.table-condensed
         %thead
           %tr
-            -header.each do |header|
+            -table_struct[:header].each do |header|
               %th
                 =header[0]
         %tbody
-          -table.columns.each do |defn|
+          -table_struct[:data].each do |defn|
             %tr
-              -header.each do |name, prop|
+              -table_struct[:header].each do |name, prop|
                 %td
                   .table-data
                     =prop[:value].call(defn)
@@ -28,19 +28,16 @@
         %table.table.table-condensed
           %thead
             %tr
-              %th
-                Index Name
-              -table.indexes.first[1].each do |k,v|
+              -index_struct[:header].each do |header|
                 %th
-                  =k
+                  =header[0]
           %tbody
-            -table.indexes.each do |row|
+            -index_struct[:data].each do |defn|
               %tr
-                %td
-                  =row[0]
-                -row[1].each do |k,v|
+                -index_struct[:header].each do |name, prop|
                   %td
-                    =v
+                    .table-data
+                      =prop[:value].call(defn)
   .row
     .col-md-12
       %h4 
