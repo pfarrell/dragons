@@ -14,8 +14,8 @@ class Table
     @conn.indexes(@name)
   end
 
-  def foreign_keys(name)
-    @conn.foreign_key_list(name)
+  def foreign_keys
+    @conn.foreign_key_list(@name)
   end
 
   def data(count=50)
