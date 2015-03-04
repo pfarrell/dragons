@@ -10,7 +10,8 @@
     -columns.each do |column, tables|
       %tr
         %td
-          =column
+          %a{href: "#{url_for("/column/#{column}")}"}
+            #{column}
         %td
           -tables.each_with_index do |table, i|
             %a{href: "#{url_for("/table/#{table}")}"}

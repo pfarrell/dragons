@@ -1,0 +1,14 @@
+%h3
+  column name
+%table.table.table-condensed
+  %thead
+    %tr
+      %th
+        Table
+    -column.each do |table|
+      %tr
+        %td
+          %a{href: "#{url_for("/table/#{table}")}"}
+            =table
+  
+
