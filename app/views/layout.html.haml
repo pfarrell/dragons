@@ -23,49 +23,7 @@
           Dragons
       .collapse.navbar-collapse#navbar-collapse
         %ul.nav.navbar-nav
-          -if connected?
-            %li
-              %a{href: "#{url_for("/database")}"}
-                Database
-            -unless tables.nil? || tables.count < 1
-              %li.dropdown 
-                %a.dropdown-toggle{href: "#", role:"button", aria:{expanded: false}, data:{toggle:"dropdown"}} 
-                  Tables
-                  %span.caret
-                %ul.dropdown-menu{role:"menu"}
-                  -tables.each do |table|
-                    %li
-                      %a{href:"#{url_for("/table/#{table}")}"}
-                        #{table}
-            -unless views.nil? || views.count < 1
-              %li.dropdown 
-                %a.dropdown-toggle{href: "#", role:"button", aria:{expanded: false}, data:{toggle:"dropdown"}} 
-                  Views
-                  %span.caret
-                %ul.dropdown-menu{role:"menu"}
-                  -views.each do |view|
-                    %li
-                      %a{href:"#{url_for("/view/#{view}")}"}
-                        #{view}
-            -unless routines.nil? || routines.count < 1
-              %li.dropdown 
-                %a.dropdown-toggle{href: "#", role:"button", aria:{expanded: false}, data:{toggle:"dropdown"}} 
-                  Routines
-                  %span.caret
-                %ul.dropdown-menu{role:"menu"}
-                  -routines.each do |routine|
-                    %li
-                      %a{href:"#{url_for("/routine/#{routine}")}"}
-                        #{routine}
-            %li
-              %a{href:"#{url_for("/database/columns")}"}
-                Columns
-            %li
-              %a{href:"#{url_for("/query")}"}
-                Query
-            %li
-              %a{href:"#{url_for("/logout")}"}
-                Logout
+          =haml :'partials/connected_nav'
     .container#content
       =yield
     .container.footer
