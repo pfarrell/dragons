@@ -14,11 +14,18 @@ class App < Sinatra::Application
     props
   end
 
+  def routine_header
+    props={}
+    props["name"]={value: lambda{|x| x}}
+    props
+  end
+  
   get "/table/:table_name" do
     table = session[:db].table(params[:table_name])
     haml :table, locals: {
       table_struct: {header:table_header, data:table.columns},
       index_struct: {header:index_header, data:table.indexes},
+      routine_struct: {header:routine_header, data:table.routines.sort},
       table: table
     }
   end

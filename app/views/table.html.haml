@@ -2,7 +2,7 @@
   #{table.name}
 .container
   .row
-    .col-md-6
+    .col-md-4
       %h4 
         Fields
       %table.table.table-condensed
@@ -22,7 +22,7 @@
                     -else
                       %a{href:"#{prop[:link].call(defn)}"}
                         =prop[:value].call(defn)
-    .col-md-6
+    .col-md-4
       %h4 
         Indexes
       -if table.indexes.nil? || table.indexes.length < 1
@@ -42,6 +42,14 @@
                   %td
                     .table-data
                       =prop[:value].call(defn)
+    .col-md-4
+      %h4 
+        Routines
+      -if table.routines.nil? || table.routines.length < 1
+        %h5
+          No referencing routines
+      -else
+        =haml :'partials/lambda_list', locals: {model: routine_struct}
   .row
     .col-md-12
       %h4 

@@ -25,4 +25,12 @@ class Table
   def primary_key
     columns.select{|x| x[1][:primary_key]}
   end
+
+  def routines
+    @conn[Sequel.qualify("information_schema", "routines")]
+      .select(:routine_name)
+      .where(Sequel.ilike(:routine_definition, "%#{@name}%"))
+      .map{|x| x[:routine_name] }
+  end
+    
 end
