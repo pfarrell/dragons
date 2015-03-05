@@ -6,7 +6,7 @@ class App < Sinatra::Application
   end
 
   get "/columns" do
-    haml :columns, locals: { columns: column_hash}
+    haml :columns, locals: { columns: column_hash.to_a.sort.to_h}
   end
 
   get "/column/:column_name" do

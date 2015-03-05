@@ -32,19 +32,19 @@ class App < Sinatra::Application
     end
 
     def tables
-      session[:db].tables if connected?
+      session[:db].tables.sort if connected?
     end
 
     def views
-      session[:db].views if connected?
+      session[:db].views.sort if connected?
     end
 
     def routines
-      session[:db].routines if connected?
+      session[:db].routines.sort if connected?
     end
 
     def columns
-      session[:db].columns if connected?
+      session[:db].columns.sort if connected?
     end
   end
 end

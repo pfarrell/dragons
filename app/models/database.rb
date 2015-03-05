@@ -7,7 +7,7 @@ class Database
   end
 
   def tables
-    Sequel.connect(@conn).tables.sort
+    Sequel.connect(@conn).tables
   end
 
   def table(name)
@@ -21,7 +21,7 @@ class Database
   end
 
   def views
-    Sequel.connect(@conn).views.sort
+    Sequel.connect(@conn).views
   end
 
   def routines(schema=default_schema)
@@ -29,7 +29,6 @@ class Database
       .select(:routine_name)
       .where(routine_schema: schema)
       .map{|x| x[:routine_name] }
-      .sort
   end
 
   def routine(name, schema=default_schema)
