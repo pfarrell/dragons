@@ -1,7 +1,7 @@
 class App < Sinatra::Application
   def table_header
     props={}
-    props["field"]={value: lambda{|x| x[0]}}
+    props["field"]={value: lambda{|x| x[0]}, link: lambda{|x| "/columns/#{x[0]}"}}
     props["type"]={value: lambda{|x| x[1][:db_type]}}
     props["primary key?"]={value: lambda{|x| x[1][:primary_key]}}
     props

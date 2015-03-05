@@ -17,7 +17,11 @@
               -table_struct[:header].each do |name, prop|
                 %td
                   .table-data
-                    =prop[:value].call(defn)
+                    -if prop[:link].nil?
+                      =prop[:value].call(defn)
+                    -else
+                      %a{href:"#{prop[:link].call(defn)}"}
+                        =prop[:value].call(defn)
     .col-md-6
       %h4 
         Indexes
