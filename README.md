@@ -4,9 +4,11 @@
 
 How many sql query tools have I created? Like 4?
 
-This one brings together some things I've learned about digging through existing code bases
+You know what I've never created? One that was specifically for dealing with investigating legacy code bases. Wouldn't that be useful? A tool designed to help you make sense of a codebase you've never used?
 
-Built using sequel so that you can connect and analyze a number of different database types, but
+This one brings together some things I've learned over the past few years
+
+Built using [sequel](http://sequel.jeremyevans.net/) so that you can connect and analyze a number of different database types, but
 it remains to be seen how far we can take it.
 
 In future, I'd like to add code exploration to this as well, but let's just see if we can get this 
