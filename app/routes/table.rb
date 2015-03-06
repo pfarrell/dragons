@@ -16,7 +16,7 @@ class App < Sinatra::Application
 
   def routine_header
     props={}
-    props["name"]={value: lambda{|x| x}}
+    props["name"]={value: lambda{|x| x}, link: lambda{|x| "/routines/#{x}"}}
     props
   end
   
@@ -25,7 +25,7 @@ class App < Sinatra::Application
     haml :table, locals: {
       table_struct: {header:table_header, data:table.columns},
       index_struct: {header:index_header, data:table.indexes},
-      routine_struct: {header:routine_header, data:table.routines.sort},
+      routine_struct: {header:routine_header, data:table.routines},
       table: table
     }
   end
