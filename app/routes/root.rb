@@ -1,5 +1,6 @@
 class App < Sinatra::Application
   get "/" do
+    redirect "/database" if connected?
     haml :index
   end
 

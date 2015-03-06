@@ -1,25 +1,21 @@
--if connected?
+-unless tables.nil? || tables.count < 1
+  %li  
+    %a{href:"#{url_for("/tables")}"}
+      Tables
+-unless views.nil? || views.count < 1
   %li
-    %a{href: "#{url_for("/database")}"}
-      Database
-  -unless tables.nil? || tables.count < 1
-    %li  
-      %a{href:"#{url_for("/tables")}"}
-        Tables
-  -unless views.nil? || views.count < 1
-    %li
-      %a{href:"#{url_for("/views")}"}
-        Views
-  -unless routines.nil? || routines.count < 1
-    %li
-      %a{href:"#{url_for("/routines")}"}
-        Routines
+    %a{href:"#{url_for("/views")}"}
+      Views
+-unless routines.nil? || routines.count < 1
   %li
-    %a{href:"#{url_for("/columns")}"}
-      Columns
-  %li
-    %a{href:"#{url_for("/query")}"}
-      Query
-  %li
-    %a{href:"#{url_for("/logout")}"}
-      Logout
+    %a{href:"#{url_for("/routines")}"}
+      Routines
+%li
+  %a{href:"#{url_for("/columns")}"}
+    Columns
+%li
+  %a{href:"#{url_for("/query")}"}
+    Query
+%li
+  %a{href:"#{url_for("/logout")}"}
+    Logout
