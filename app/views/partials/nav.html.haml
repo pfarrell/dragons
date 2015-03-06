@@ -16,3 +16,6 @@
 %li
   %a{href:"#{url_for("/logout")}"}
     Logout
+%form.navbar-form.navbar-left{id: "search", action: "#{url_for("/search")}", method: "POST"}
+  .form-group
+    %input.form-control#query{type: "TEXT", name: "query", autofocus: true, placeholder: "Search"}

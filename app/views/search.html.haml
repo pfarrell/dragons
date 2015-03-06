@@ -1,0 +1,23 @@
+%h2
+  Results
+%h3
+  Tables
+-results[:tables].each do |table|
+  %a{href:"#{url_for("/tables/#{table}")}"}
+    =table
+%h3
+  Routines
+-results[:routines].each do |routine|
+  %a{href:"#{url_for("/routines/#{routine}")}"}
+    =routine
+%h3
+  Views
+-results[:views].each do |view|
+  %a{href:"#{url_for("/views/#{view}")}"}
+    =view
+%h3
+  Columns
+-results[:columns].each do |view|
+  %a{href:"#{url_for("/columns/#{view[:column_name]}")}"}
+    =view[:column_name]
+

@@ -6,6 +6,10 @@ class Table
     @name=name
   end
 
+  def self.search(conn, query)
+    conn.tables.select{|table| table =~/#{query}/}
+  end
+
   def columns
     @conn.schema(@name)
   end
