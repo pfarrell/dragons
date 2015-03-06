@@ -1,15 +1,12 @@
--unless tables.nil? || tables.count < 1
-  %li  
-    %a{href:"#{url_for("/tables")}"}
-      Tables
--unless views.nil? || views.count < 1
-  %li
-    %a{href:"#{url_for("/views")}"}
-      Views
--unless routines.nil? || routines.count < 1
-  %li
-    %a{href:"#{url_for("/routines")}"}
-      Routines
+%li  
+  %a{href:"#{url_for("/tables")}"}
+    Tables
+%li
+  %a{href:"#{url_for("/views")}"}
+    Views
+%li
+  %a{href:"#{url_for("/routines")}"}
+    Routines
 %li
   %a{href:"#{url_for("/columns")}"}
     Columns
