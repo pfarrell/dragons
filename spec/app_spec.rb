@@ -25,6 +25,13 @@ describe 'App' do
     expect(last_response).to be_ok
   end
 
+  it "has a tables route" do
+    setup_session(conn)
+
+    get "/tables"
+    expect(last_response).to be_ok
+  end
+
   it "has a columns.json route" do
     setup_session(conn)
 
