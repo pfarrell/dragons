@@ -23,7 +23,7 @@
           Dragons
       .collapse.navbar-collapse#navbar-collapse
         %ul.nav.navbar-nav
-          =haml :'partials/connected_nav' if connected?
+          =haml :'partials/nav' if connected?
     .container#content
       =yield
     .container.footer
