@@ -1,4 +1,4 @@
 %h3
   =routine[:routine_name]
 %textarea.form-control{rows: 20}
-  =routine[:routine_definition]
+  =routine[:routine_definition].gsub(/\r\n/, "\n")

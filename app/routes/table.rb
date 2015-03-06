@@ -23,9 +23,9 @@ class App < Sinatra::Application
   get "/tables/:table_name" do
     table = session[:db].table(params[:table_name])
     haml :table, locals: {
-      table_struct: {header:table_header, data:table.columns},
-      index_struct: {header:index_header, data:table.indexes},
-      routine_struct: {header:routine_header, data:table.routines},
+      table_struct: {header:table_header, data:table.columns.sort},
+      index_struct: {header:index_header, data:table.indexes.sort},
+      routine_struct: {header:routine_header, data:table.routines.sort},
       table: table
     }
   end

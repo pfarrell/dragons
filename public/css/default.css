@@ -8,3 +8,7 @@
 .headerimg {
   padding-bottom: 2em;
 }
+
+span.search {
+  font-style: italic;
+}

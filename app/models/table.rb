@@ -7,7 +7,7 @@ class Table
   end
 
   def self.search(conn, query)
-    conn.tables.select{|table| table =~/#{query}/}
+    conn.tables.select{|table| table =~/#{query}/i}
   end
 
   def columns

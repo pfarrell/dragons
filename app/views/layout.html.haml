@@ -22,8 +22,7 @@
         %a.navbar-brand{href:"#{url_for("/")}"}
           Dragons
       .collapse.navbar-collapse#navbar-collapse
-        %ul.nav.navbar-nav
-          =haml :'partials/nav' if connected?
+        =haml :'partials/nav' if connected?
     .container#content
       =yield
     .container.footer
