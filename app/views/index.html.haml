@@ -1,13 +1,9 @@
-%h1
-  Here be Dragons
-  %small
-    Understand your legacy system
-.hr
-  %form{role: "form", action: "database", method: "POST"}
-    .form-group
-      %label{for: "conn"}
-        Connection String
-      %input.form-control{type: "text", name:"conn", placeholder:"Enter your connection string"}
-    %button.btn.btn-default{type:"submit"}
-      Submit
+%img.headerimg{src: "/img/dragons.jpg"}
+%form{role: "form", action: "database", method: "POST"}
+  .form-group
+    %label{for: "conn"}
+      Connection String
+    %input.form-control{type: "text", name:"conn", placeholder:"Enter your connection string"}
+  %button.btn.btn-default{type:"submit"}
+    Submit
 :javascript
