@@ -7,8 +7,9 @@
       %h2
         Query
       %form{action:"/query", method:"POST"}
-        %textarea#query.query{rows:"10", name:"query"}
-          =query
+        %textarea#query.query{rows:"10", name:"query", autofocus: true}
+          -unless query.nil?
+            =query.gsub(/^[ \t]*/, "\t")
         .submit
           %button.btn.btn-primary{type:"submit", value:"submit"}
             Submit
