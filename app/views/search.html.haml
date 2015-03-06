@@ -9,28 +9,28 @@
   .row
     .col-md-3
       %h3
-        Tables
+        Tables - #{results[:tables].size}
       -results[:tables].each do |table|
         .result
           %a{href:"#{url_for("/tables/#{table}")}"}
             =table
     .col-md-3
       %h3
-        Routines
+        Routines - #{results[:routines].size}
       -results[:routines].each do |routine|
         .result
           %a{href:"#{url_for("/routines/#{routine}")}"}
             =routine
     .col-md-3
       %h3
-        Views
+        Views - #{results[:views].size}
       -results[:views].each do |view|
         .result
           %a{href:"#{url_for("/views/#{view}")}"}
             =view
     .col-md-3
       %h3
-        Columns
+        Columns - #{results[:columns].size}
       -results[:columns].each do |column|
         .result
           %a{href:"#{url_for("/columns/#{column[:column_name]}")}"}
