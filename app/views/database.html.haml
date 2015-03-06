@@ -2,37 +2,15 @@
   .row
     .col-md-4
       %h4
-        Tables 
-      -if model.tables.nil? || model.tables.count < 1
-        No Tables
-      -else
-        %ul.list
-          -model.tables.each do |table|
-            %li
-              %a.tablename{href: "table/#{table}"}
-                #{table}
-    .col-md-4
-      %h4
         Views
-      -if model.views.nil? || model.views.count < 1
+      -if model.views.sort.nil? || model.views.count < 1
         No Views
       -else
         %ul.list
-          -model.views.each do |view|
+          -model.views.sort.each do |view|
             %li
               %a.view{href: "view/#{view}"}
                 #{view}
-    .col-md-4
-      %h4
-        Stored Procedures
-      -if model.routines.nil? || model.routines.count < 1
-        No Stored Procedures
-      -else
-        %ul
-          -model.routines.each do |routine|
-            %li
-              %a.routine{href: "routine/#{routine}"}
-                #{routine}
 :javascript
   var options = {valueNames: [ 'tablename' ] };
   var tableList = new List('databasetables', options);
