@@ -1,38 +1,36 @@
-%h2
-  Results 
-  -unless query.nil?
-    (
-    %span.search
-      #{query}
-    )
+-unless query.nil?
+  (
+  %span.search
+    #{query}
+  )
 .container
-  .row
-    .col-md-3
-      %h3
-        Tables - #{results[:tables].size}
-      -results[:tables].each do |table|
-        .result
-          %a{href:"#{url_for("/tables/#{table}")}"}
-            =table
-    .col-md-3
-      %h3
-        Routines - #{results[:routines].size}
-      -results[:routines].each do |routine|
-        .result
-          %a{href:"#{url_for("/routines/#{routine}")}"}
-            =routine
-    .col-md-3
-      %h3
-        Views - #{results[:views].size}
-      -results[:views].each do |view|
-        .result
-          %a{href:"#{url_for("/views/#{view}")}"}
-            =view
-    .col-md-3
-      %h3
-        Columns - #{results[:columns].size}
-      -results[:columns].each do |column|
-        .result
-          %a{href:"#{url_for("/columns/#{column[:column_name]}")}"}
-            =column[:column_name]
+.row
+  .col-md-3
+    %h3
+      Tables - #{results[:tables].size}
+    -results[:tables].each do |table|
+      .result
+        %a{href:"#{url_for("/tables/#{table}")}"}
+          =table
+  .col-md-3
+    %h3
+      Routines - #{results[:routines].size}
+    -results[:routines].each do |routine|
+      .result
+        %a{href:"#{url_for("/routines/#{routine}")}"}
+          =routine
+  .col-md-3
+    %h3
+      Views - #{results[:views].size}
+    -results[:views].each do |view|
+      .result
+        %a{href:"#{url_for("/views/#{view}")}"}
+          =view
+  .col-md-3
+    %h3
+      Columns - #{results[:columns].size}
+    -results[:columns].each do |column|
+      .result
+        %a{href:"#{url_for("/columns/#{column[:column_name]}")}"}
+          =column[:column_name]
 
