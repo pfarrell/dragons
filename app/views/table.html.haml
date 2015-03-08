@@ -50,6 +50,15 @@
           No referencing routines
       -else
         =haml :'partials/lambda_list', locals: {model: routine_struct}
+  .row 
+    .col-md-4
+      %h4
+        Foreign Keys
+      -if table.foreign_keys.nil? || table.foreign_keys.length < 1
+        %h5
+          No Foreign Keys
+      -else
+        =haml :'partials/lambda_list', locals: {model: foreign_key_struct}
   .row
     .col-md-12
       %h4 

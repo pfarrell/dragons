@@ -20,12 +20,23 @@ class App < Sinatra::Application
     props
   end
   
+  def foreign_key_header
+    props={}
+    props["raw"]={value: lambda{|x| x}}
+    props["Name"]={value: lambda{|x| x[:name]}}
+    props["Columns"]={value: lambda{|x| x[:columns].join(", ")}}
+    props["Foreign Table"]={value: lambda{|x| x[:table]}, link: lambda{|x| "/tables/#{x[:table]}"}}
+    props["Foreign Column"]={value: lambda{|x| x[:key].join(", ")}}
+    props
+  end
+  
   get "/tables/:table_name" do
     table = session[:db].table(params[:table_name])
     haml :table, locals: {
       table_struct: {header:table_header, data:table.columns.sort},
       index_struct: {header:index_header, data:table.indexes.sort},
       routine_struct: {header:routine_header, data:table.routines.sort},
+      foreign_key_struct: {header:foreign_key_header, data: table.foreign_keys},
       table: table
     }
   end
