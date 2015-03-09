@@ -1,9 +1,8 @@
 Sequel.migration do
   change do
-    create_table(:servers) do
+    create_table(:databases) do
       primary_key :id
-      String :host
-      String :database
+      String :connection
       DateTime :created_at
       DateTime :updated_at
     end

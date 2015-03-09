@@ -8,7 +8,7 @@ end
 
 
 describe 'App' do
-  let (:conn) {"postgres://localhost/pigeon"}
+  let (:conn) { URI.escape('{"adapter":"postgres", "host":"localhost", "database":"pigeon"}') }
   it "should allow access to the home page" do
     get "/"
     expect(last_response).to be_ok
