@@ -9,6 +9,6 @@ class App < Sinatra::Application
   end
 
   get "/search" do
-    haml :search, locals: {query: nil, results: []}
+    haml :search, locals: {query: "", results: []}
   end
 end

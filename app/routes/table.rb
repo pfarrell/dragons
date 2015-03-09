@@ -42,9 +42,14 @@ class App < Sinatra::Application
   end
 
   get "/tables" do
-    props={}
-    props["table"]={value: lambda{|x| x}, link: lambda{|x| "/tables/#{x}"}}
-
-    haml :collection, locals: {title: "Tables", model: {header: props, data: session[:db].tables.sort}}
+    data = session[:db].tables.sort
+    respond_to do |wants|
+      wants.json { data.to_json }
+      wants.html {
+        props={}
+        props["table"]={value: lambda{|x| x}, link: lambda{|x| "/tables/#{x}"}}
+        haml :collection, locals: {title: "Tables", model: {header: props, data: session[:db].tables.sort}}
+      }
+    end
   end
 end
