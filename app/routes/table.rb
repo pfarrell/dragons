@@ -22,7 +22,6 @@ class App < Sinatra::Application
   
   def foreign_key_header
     props={}
-    props["raw"]={value: lambda{|x| x}}
     props["Name"]={value: lambda{|x| x[:name]}}
     props["Columns"]={value: lambda{|x| x[:columns].join(", ")}}
     props["Foreign Table"]={value: lambda{|x| x[:table]}, link: lambda{|x| "/tables/#{x[:table]}"}}
