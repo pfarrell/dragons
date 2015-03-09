@@ -1,5 +1,4 @@
 require 'logger'
-#config related stuff
 
 $console = ENV['RACK_ENV'] == 'development' ? Logger.new(STDOUT) : nil
 DB = Sequel.connect(ENV['DRAGONS_DB'] || 'sqlite://config.db',logger: $console)
@@ -17,3 +16,6 @@ require 'models/view'
 require 'models/column'
 require 'models/routine'
 
+#config related stuff
+require 'models/path'
+require 'models/note'

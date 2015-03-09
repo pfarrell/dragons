@@ -50,4 +50,11 @@ describe 'App' do
     get "/columns/#{hsh.first[0]}"
     expect(last_response).to be_ok
   end
+
+  it "has a notes route" do
+    setup_session(conn)
+
+    post "/notes", {note: "test note"}
+    expect(last_response).to be_redirect
+  end
 end
