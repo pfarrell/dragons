@@ -14,6 +14,18 @@ class Database < Sequel::Model
     Table.new(Sequel.connect(conn), name)
   end
 
+  def adapter
+    conn["adapter"]
+  end
+
+  def host
+    conn["host"]
+  end
+  
+  def database
+    conn["database"]
+  end
+
   def default_schema
     cn = conn['adapter']
     return 'dbo' if cn =~ /^tinytds/
