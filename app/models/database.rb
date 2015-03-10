@@ -50,7 +50,14 @@ class Database < Sequel::Model
       .where({routine_schema: schema, routine_name: name})
       .first
       .map{|k,v| ret[k.to_s.downcase.to_sym] = v}
+    ret[:routine_definition] = mssql_routine(name, schema).map{|x| x[:text]}.join if adapter =~ /^tinytds/
     ret
+  end
+
+  def mssql_routine(name, schema)
+    #object_definition also got truncated
+    #Sequel.connect(conn).fetch("SELECT OBJECT_DEFINITION(OBJECT_ID('#{name}')) as routine_definition")
+    Sequel.connect(conn).fetch("EXEC sp_helptext'#{name}'")
   end
 
   def run_query(query)
