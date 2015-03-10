@@ -1,11 +1,11 @@
 %h3
-  column name
+  Column: #{column} (#{columns.count})
 %table.table.table-condensed
   %thead
     %tr
       %th
         Table
-    -column.each do |table|
+    -columns.each do |table|
       %tr
         %td
           %a{href: "#{url_for("/tables/#{table}")}"}

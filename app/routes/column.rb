@@ -14,6 +14,6 @@ class App < Sinatra::Application
   end
 
   get "/columns/:column_name" do
-    haml :column, locals: {column: column_hash[params[:column_name].downcase]}
+    haml :column, locals: {column: params[:column_name], columns: column_hash[params[:column_name].downcase]}
   end
 end
