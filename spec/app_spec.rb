@@ -100,4 +100,12 @@ describe 'App' do
     get "/routines"
     expect(last_response).to be_ok
   end
+
+  it "has a logout route" do
+    setup_session(conn)
+    get "/"
+    expect(last_response).to be_redirect
+    get "/logout"
+    expect(last_response).to be_redirect
+  end
 end
