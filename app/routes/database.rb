@@ -21,7 +21,7 @@ class App < Sinatra::Application
   get "/database/:id" do
     db=Database[params[:id]] 
     session[:db] = db.id
-    haml :collection, locals: { title: "Database", model: {header:stats_header, data: stats }} 
+    redirect "/database"
   end
 
   post "/database" do

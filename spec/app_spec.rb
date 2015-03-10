@@ -116,4 +116,11 @@ describe 'App' do
     get "/logout"
     expect(last_response).to be_redirect
   end
+
+  it "has a database route for reusing old connections" do
+    setup_session(conn)
+    db=Database.first
+    get "/database/#{db.id}"
+    expect(last_response).to be_redirect
+  end
 end
