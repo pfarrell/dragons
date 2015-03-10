@@ -5,10 +5,14 @@ class App < Sinatra::Application
   end
 
   get "/routines" do
-    props={}
-    props["routine"]={value: lambda{|x| x}, link: lambda{|x| "/routines/#{x}"}}
-
-    haml :collection, locals: {title: "Routines", model: {header: props, data: Database[session[:db]].routines.sort}}
+    data=Database[session[:db]].routines.sort
+    respond_to do |wants|
+      wants.json { data.to_json }
+      wants.html {
+        props={}
+        props["routine"]={value: lambda{|x| x}, link: lambda{|x| "/routines/#{x}"}}
+        haml :collection, locals: {title: "Routines", model: {header: props, data: data}}
+      }
+    end
   end
-
 end
