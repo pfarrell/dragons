@@ -9,8 +9,8 @@ class App < Sinatra::Application
 
   def stats_header
     props={}
-    props["Object Type"]={value:lambda{|x| x[0]}}
-    props["Count"]={value:lambda{|x| x[1]}}
+    props["Object Type"]={value:lambda{|x| x[0]}, link:lambda{|x| "/#{x[0].downcase}"}}
+    props["Count"]={value:lambda{|x| x[1]}, link:lambda{|x| "/#{x[0].downcase}"}}
     props
   end
 
