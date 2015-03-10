@@ -46,8 +46,8 @@ class App < Sinatra::Application
       wants.json { data.to_json }
       wants.html {
         props={}
-        props["table"]={value: lambda{|x| x}, link: lambda{|x| "/tables/#{x}"}}
-        haml :collection, locals: {title: "Tables", model: {header: props, data: Database[session[:db]].tables.sort}}
+        props["Table Name"]={value: lambda{|x| x}, link: lambda{|x| "/tables/#{x}"}}
+        haml :tables, locals: {model: {header: props, data: Database[session[:db]].tables.sort}}
       }
     end
   end
