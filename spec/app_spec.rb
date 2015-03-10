@@ -73,6 +73,12 @@ describe 'App' do
     expect(last_response).to be_ok
   end
 
+  it "has a search route" do
+    setup_session(conn)
+    get "/search?query=test"
+    expect(last_response).to be_ok
+  end
+
   it "has a views route" do
     setup_session(conn)
     get "/views"
