@@ -18,6 +18,12 @@ class App < Sinatra::Application
     haml :collection, locals: { title: "Database", model: {header:stats_header, data: stats }} 
   end
 
+  get "/database/:id" do
+    db=Database[params[:id]] 
+    session[:db] = db.id
+    haml :collection, locals: { title: "Database", model: {header:stats_header, data: stats }} 
+  end
+
   post "/database" do
     db = Database.find_or_create(connection: params[:conn])
     session[:db] = db.id

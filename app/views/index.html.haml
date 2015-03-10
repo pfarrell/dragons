@@ -6,4 +6,11 @@
     %input.form-control{type: "text", name:"conn", placeholder:"Enter your connection string"}
   %button.btn.btn-default{type:"submit"}
     Submit
+  %hr
+  %h4
+    Recent Connections
+  -connections.each do |conn|
+    .connection
+      %a{href:"#{url_for("/database/#{conn.id}")}"}
+        #{conn.adapter} #{conn.host}/#{conn.database}
 :javascript
