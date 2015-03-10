@@ -5,7 +5,7 @@ class App < Sinatra::Application
 
   post "/query" do
     begin
-    haml :query, locals: { query: params[:query], results: session[:db].run_query(params[:query]).all, error: nil }
+    haml :query, locals: { query: params[:query], results: Database[session[:db]].run_query(params[:query]).all, error: nil }
     rescue Exception => ex
       haml:query, locals: {query: params[:query], results: nil, error: ex.message} 
     end

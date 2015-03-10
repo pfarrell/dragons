@@ -46,6 +46,16 @@ class App < Sinatra::Application
     def columns
       session[:db].columns.sort if connected?
     end
+
+    def path
+      request.fullpath
+    end
+
+    def notes
+      return nil if session[:db].nil?
+      p=Path.where(database: Database[session[:db]], path: path)
+      p.nil? ? nil : Note.where(path: p)
+    end
   end
 end
 

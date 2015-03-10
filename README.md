@@ -8,6 +8,16 @@ You know what I've never created? One that was specifically for dealing with inv
 
 This one brings together some things I've learned over the past few years
 
+Features
+  * search across tables, views, column names, function definitions, and stored procedure definitions
+  * column name to table view
+  * attach notes to any object
+  * query interface
+
+Planned
+  * syntax highlighting for sql
+  * visualization
+
 Built using [sequel](http://sequel.jeremyevans.net/) so that you can connect and analyze a number of different database types, but
 it remains to be seen how far we can take it.
 
@@ -18,7 +28,6 @@ Things to come
 
 * network-graph displays of table relations supporting inferred foreign keys
 * read only queries
-* inline notes
 
 ##Install
 
