@@ -29,6 +29,7 @@ class Database < Sequel::Model
   def default_schema
     cn = conn['adapter']
     return 'dbo' if cn =~ /^tinytds/
+    return database if cn=~ /^mysql/
     return 'public'
   end
 
@@ -40,12 +41,16 @@ class Database < Sequel::Model
     Sequel.connect(conn)[Sequel.qualify("information_schema", "routines")]
       .select(:routine_name)
       .where(routine_schema: schema)
-      .map{|x| x[:routine_name] }
+      .map{|x| x[:routine_name] || x[:ROUTINE_SCHEMA]} #upcase is hack for mysql
   end
 
   def routine(name, schema=default_schema)
+    ret={}
     Sequel.connect(conn)[Sequel.qualify("information_schema", "routines")]
-      .where({specific_schema: schema, routine_name: name}).first
+      .where({routine_schema: schema, routine_name: name})
+      .first
+      .map{|k,v| ret[k.to_s.downcase.to_sym] = v}
+    ret
   end
 
   def run_query(query)
