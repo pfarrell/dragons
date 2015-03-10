@@ -14,9 +14,14 @@
   %li
     %a{href:"#{url_for("/query")}"}
       Query
-  %form.navbar-form.navbar-left{id: "search", action: "#{url_for("/search")}", method: "POST"}
+  %form.navbar-form.navbar-left{id: "search", action: "#{url_for("/search")}", method: "GET"}
     .form-group
       %input.form-control#query{type: "TEXT", name: "query", autofocus: true, placeholder: "Search"}
+  %form.navbar-form.navbar-left{id: "note", action: "#{url_for("/notes")}", method: "POST"}
+    .form-group
+      %input.hidden{name:"path", value:path}
+      %input.form-control#note{type: "TEXT", name: "note", placeholder: "Add a Note"}
+      %input{type:"submit"}
   %li.navbar-right
     %a{href:"#{url_for("/logout")}"}
       Logout

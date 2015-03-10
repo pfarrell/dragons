@@ -1,11 +1,11 @@
 class App < Sinatra::Application
 
   get "/routines/:routine_name" do
-    haml :routine, locals: { routine: session[:db].routine(params[:routine_name]) }
+    haml :routine, locals: { routine: Database[session[:db]].routine(params[:routine_name]) }
   end
 
   get "/routines" do
-    data=session[:db].routines.sort
+    data=Database[session[:db]].routines.sort
     respond_to do |wants|
       wants.json { data.to_json }
       wants.html {

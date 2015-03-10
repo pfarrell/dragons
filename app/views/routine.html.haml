@@ -1,4 +1,7 @@
 %h3
   =routine[:routine_name]
 %textarea.form-control{rows: 20}
-  =routine[:routine_definition].gsub(/\r\n/, "\n")
+  -if routine[:routine_definition].nil?
+    Access issue.  User may not have rights to view this object.
+  -else 
+    =routine[:routine_definition].gsub(/\r\n/, "\n")

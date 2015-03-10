@@ -22,7 +22,6 @@ class App < Sinatra::Application
   
   def foreign_key_header
     props={}
-    props["raw"]={value: lambda{|x| x}}
     props["Name"]={value: lambda{|x| x[:name]}}
     props["Columns"]={value: lambda{|x| x[:columns].join(", ")}}
     props["Foreign Table"]={value: lambda{|x| x[:table]}, link: lambda{|x| "/tables/#{x[:table]}"}}
@@ -31,7 +30,7 @@ class App < Sinatra::Application
   end
   
   get "/tables/:table_name" do
-    table = session[:db].table(params[:table_name])
+    table = Database[session[:db]].table(params[:table_name])
     haml :table, locals: {
       table_struct: {header:table_header, data:table.columns.sort},
       index_struct: {header:index_header, data:table.indexes.sort},
@@ -42,13 +41,13 @@ class App < Sinatra::Application
   end
 
   get "/tables" do
-    data = session[:db].tables.sort
+    data = Database[session[:db]].tables.sort
     respond_to do |wants|
       wants.json { data.to_json }
       wants.html {
         props={}
         props["table"]={value: lambda{|x| x}, link: lambda{|x| "/tables/#{x}"}}
-        haml :collection, locals: {title: "Tables", model: {header: props, data: session[:db].tables.sort}}
+        haml :collection, locals: {title: "Tables", model: {header: props, data: Database[session[:db]].tables.sort}}
       }
     end
   end

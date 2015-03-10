@@ -1,7 +1,7 @@
 class App < Sinatra::Application
   def column_hash
     summary = Hash.new{|hash, key| hash[key] = Array.new;}
-    session[:db].columns.map{|x| summary[x[:column_name]] << x[:table_name]}
+    Database[session[:db]].columns.map{|x| summary[x[:column_name]] << x[:table_name]}
     summary
   end
 

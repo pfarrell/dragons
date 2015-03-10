@@ -9,9 +9,10 @@ end
 
 
 describe 'App' do
-  let (:conn) {"postgres://localhost/pigeon"}
 
-  it "should allow access to the home page", :skip_before_filter do
+  let (:conn) { URI.escape('{"adapter":"postgres", "host":"localhost", "database":"pigeon"}') }
+
+  it "should allow access to the home page" do
     get "/"
     expect(last_response).to be_ok
   end
@@ -59,15 +60,16 @@ describe 'App' do
     expect(last_response).to be_ok
   end
 
-  it "has a search route" do
+  it "has a notes route" do
     setup_session(conn)
-    get "/search"
-    expect(last_response).to be_ok
+
+    post "/notes", {note: "test note"}
+    expect(last_response).to be_redirect
   end
 
   it "has a search route" do
     setup_session(conn)
-    post "/search?query=test"
+    get "/search"
     expect(last_response).to be_ok
   end
 
