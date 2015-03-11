@@ -123,4 +123,10 @@ describe 'App' do
     get "/database/#{db.id}"
     expect(last_response).to be_redirect
   end
+
+  it "has a database route" do
+    setup_session(conn)
+    get "/database"
+    expect(last_response).to be_ok
+  end
 end

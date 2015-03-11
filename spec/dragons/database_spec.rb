@@ -19,4 +19,5 @@ describe 'Database' do
   it "has a database method" do
     expect(db.database).to eq("database")
   end
+
 end
