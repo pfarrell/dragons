@@ -1,7 +1,7 @@
 class App < Sinatra::Application
   get "/" do
     redirect "/database" if connected?
-    haml :index, locals:{connections:Database.all}
+    haml :index, locals:{connections:Database.order(Sequel.desc(:last_used))}
   end
 
   get "/logout" do

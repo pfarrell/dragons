@@ -21,6 +21,8 @@ class App < Sinatra::Application
   get "/database/:id" do
     db=Database[params[:id]] 
     session[:db] = db.id
+    db.last_used = Time.now
+    db.save
     redirect "/database"
   end
 
