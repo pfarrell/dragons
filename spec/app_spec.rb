@@ -129,4 +129,11 @@ describe 'App' do
     get "/database"
     expect(last_response).to be_ok
   end
+
+  it "has a connections route" do
+    setup_session(conn)
+    get "/connections"
+    expect(last_response).to be_ok
+  end
+
 end
