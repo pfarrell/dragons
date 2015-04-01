@@ -32,7 +32,7 @@ class App < Sinatra::Application
   get "/tables/:table_name" do
     table = Database[session[:db]].table(params[:table_name])
     haml :table, locals: {
-      table_struct: {header:table_header, data:table.columns.sort},
+      table_struct: {header:table_header, data:table.columns},
       index_struct: {header:index_header, data:table.indexes.sort},
       routine_struct: {header:routine_header, data:table.routines.sort},
       foreign_key_struct: {header:foreign_key_header, data: table.foreign_keys},
