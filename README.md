@@ -38,3 +38,18 @@ Things to come
    bundle exec rackup
 ```
 
+#Connection Strings
+Connection strings should be entered as JSON structures. I know it's a bit weird, but this is a homebrewed project that's not quite there yet.  Also, it makes it much more flexible.
+
+```
+{"adapter":"[ADAPTER]", "host":"[HOST]", "database":"[DATABASE_NAME]", "user":"[USERNAME]", "password":"[PASSWORD]", "timeout":[TIMEOUT]}
+```
+
+|parameter name|notes|
+|---|---|
+|ADAPTER|postgres, mysql2, sqlite, or tinytds (for Sql Server)|
+|HOST|ipaddress or hostname for database server|
+|DATABASE_NAME|name of database to connect to|
+|USERNAME|credentials username|
+|PASSWORD|credentials password|
+|TIMEOUT|optional timeout for connections|
