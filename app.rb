@@ -32,22 +32,6 @@ class App < Sinatra::Application
       !session[:db].nil?
     end
 
-    def tables
-      session[:db].tables.sort if connected?
-    end
-
-    def views
-      session[:db].views.sort if connected?
-    end
-
-    def routines
-      session[:db].routines.sort if connected?
-    end
-
-    def columns
-      session[:db].columns.sort if connected?
-    end
-
     def path
       request.fullpath
     end
