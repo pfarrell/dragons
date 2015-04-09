@@ -53,7 +53,7 @@ class App < Sinatra::Application
     end
 
     def routes
-      AppRoute.sort_by{|x| x.last_used}.reverse
+      AppRoute.order(Sequel.desc(:last_used)).all
     end
 
     def update_route
