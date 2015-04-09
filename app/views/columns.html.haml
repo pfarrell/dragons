@@ -16,7 +16,7 @@
           -tables.each_with_index do |table, i|
             %a{href: "#{url_for("/tables/#{table}")}"}
               #{table}
-              -unless i == tables.size - 1
-                ,
+            -unless i == tables.size - 1
+              ,
         %td
           =tables.size
