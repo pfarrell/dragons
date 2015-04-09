@@ -15,24 +15,10 @@
         
         %span.caret
       %ul.dropdown-menu{role:"menu", aria:{labelledby:"links"}}
-        %li{role:"presentation"}
-          %a{href:"#{url_for("/tables")}"}
-            Tables
-        %li{role:"presentation"}
-          %a{href:"#{url_for("/views")}"}
-            Views
-        %li{role:"presentation"}
-          %a{href:"#{url_for("/routines")}"}
-            Routines
-        %li{role:"presentation"}
-          %a{href:"#{url_for("/columns")}"}
-            Columns
-        %li{role:"presentation"}
-          %a{href:"#{url_for("/query")}"}
-            Query
-        %li
-          %a{href:"#{url_for("/connections")}"}
-            Connections
+        -routes.each do |route|
+          %li{role:"presentation"}
+            %a{href:"#{url_for("#{route.path}")}"}
+              =route.title
   %form.navbar-form.navbar-left{id: "search", action: "#{url_for("/search")}", method: "GET"}
     .form-group
       %input.form-control#query{type: "TEXT", name: "query", autofocus: true, placeholder: "Search"}

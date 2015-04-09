@@ -51,6 +51,10 @@ class App < Sinatra::Application
       request.fullpath
     end
 
+    def routes
+      AppRoute.all
+    end
+
     def notes
       return nil if session[:db].nil?
       p=Path.where(database: Database[session[:db]], path: path)
