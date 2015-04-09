@@ -19,3 +19,4 @@ require 'models/routine'
 #config related stuff
 require 'models/path'
 require 'models/note'
+require 'models/app_route'
