@@ -15,7 +15,7 @@ class App < Sinatra::Application
   end
 
   get "/database" do 
-    haml :collection, locals: { title: "Database", model: {header:stats_header, data: stats }} 
+    haml :collection, locals: { title: "#{current_connection.database}", model: {header:stats_header, data: stats }} 
   end
 
   get "/database/:id" do
