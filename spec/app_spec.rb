@@ -136,4 +136,10 @@ describe 'App' do
     expect(last_response).to be_ok
   end
 
+  it "handles errors" do
+    setup_session(conn)
+    get "/exception"
+    expect(last_response.status).to eq(500)
+  end
+
 end

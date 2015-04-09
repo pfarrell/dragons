@@ -8,5 +8,9 @@ class App < Sinatra::Application
     session[:db] = nil
     redirect "/"
   end
+
+  get "/exception" do
+    raise Exception, "test exception"
+  end
 end
 
