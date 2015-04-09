@@ -20,6 +20,7 @@ class App < Sinatra::Application
 
   before do
     response.set_cookie(:appc, value: SecureRandom.uuid, expires: Time.now + 3600 * 24 * 365 * 10) if request.cookies["bmc"].nil?
+    update_route
   end
 
   error do
@@ -52,7 +53,14 @@ class App < Sinatra::Application
     end
 
     def routes
-      AppRoute.all
+      AppRoute.sort_by{|x| x.last_used}.reverse
+    end
+
+    def update_route
+      app_route=AppRoute.find(path:request.path)
+      return if app_route.nil?
+      app_route.last_used=Time.now
+      app_route.save
     end
 
     def notes

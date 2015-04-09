@@ -1,24 +1,22 @@
 %ul.nav.navbar-nav
-  %li
-    .dropdown
-      %button.btn.btn-default.dropdown-toggle{type: "button", id:"links", data:{toggle: "dropdown"}, aria:{expanded:"true"}}
-        =current_connection.nil? ? "Connections" : current_connection.database
-        %span.caret
-      %ul.dropdown-menu{role:"menu", aria:{labelledby:"links"}}
-        -connections.each do |conn|
-          %li
-            %a{href:"#{url_for("/database/#{conn.id}")}"}
-              =conn.database
-  %li  
-    .dropdown
-      %button.btn.btn-default.dropdown-toggle{type: "button", id:"links", data:{toggle: "dropdown"}, aria:{expanded:"true"}}
-        
-        %span.caret
-      %ul.dropdown-menu{role:"menu", aria:{labelledby:"links"}}
-        -routes.each do |route|
-          %li{role:"presentation"}
-            %a{href:"#{url_for("#{route.path}")}"}
-              =route.title
+  %li.dropdown
+    %a.dropdown-toggle{role: "button", id:"links", data:{toggle: "dropdown"}, aria:{expanded:"false"}}
+      =current_connection.nil? ? "Connections" : current_connection.database
+      %span.caret
+    %ul.dropdown-menu{role:"menu", aria:{labelledby:"links"}}
+      -connections.each do |conn|
+        %li{role:"presentation"}
+          %a{href:"#{url_for("/database/#{conn.id}")}"}
+            =conn.database
+  %li.dropdown
+    %a.dropdown-toggle{href:"#{url_for("#{routes.first.path}")}", role: "button", id:"routes", data:{toggle: "dropdown"}, aria:{expanded:"false"}}
+      =routes.first.title
+      %span.caret
+    %ul.dropdown-menu{role:"menu", aria:{labelledby:"routes"}}
+      -routes.each do |route|
+        %li{role:"presentation"}
+          %a{href:"#{url_for("#{route.path}")}"}
+            =route.title
   %form.navbar-form.navbar-left{id: "search", action: "#{url_for("/search")}", method: "GET"}
     .form-group
       %input.form-control#query{type: "TEXT", name: "query", autofocus: true, placeholder: "Search"}

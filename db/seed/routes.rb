@@ -3,6 +3,7 @@ def create_route(path, title)
   route = AppRoute.find_or_create(path: route, title: title)
   route.title=title
   route.path=path
+  route.last_used=Time.now
   route.save
 end
 
