@@ -56,6 +56,14 @@ class App < Sinatra::Application
       p=Path.where(database: Database[session[:db]], path: path)
       p.nil? ? nil : Note.where(path: p)
     end
+
+    def connections
+      Database.order(Sequel.desc(:last_used)).all
+    end
+
+    def current_connection
+      Database[session[:db]]
+    end
   end
 end
 

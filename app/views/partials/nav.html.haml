@@ -1,22 +1,38 @@
 %ul.nav.navbar-nav
   %li
-    %a{href:"#{url_for("/connections")}"}
-      Connections
+    .dropdown
+      %button.btn.btn-default.dropdown-toggle{type: "button", id:"links", data:{toggle: "dropdown"}, aria:{expanded:"true"}}
+        =current_connection.nil? ? "Connections" : current_connection.database
+        %span.caret
+      %ul.dropdown-menu{role:"menu", aria:{labelledby:"links"}}
+        -connections.each do |conn|
+          %li
+            %a{href:"#{url_for("/database/#{conn.id}")}"}
+              =conn.database
   %li  
-    %a{href:"#{url_for("/tables")}"}
-      Tables
-  %li
-    %a{href:"#{url_for("/views")}"}
-      Views
-  %li
-    %a{href:"#{url_for("/routines")}"}
-      Routines
-  %li
-    %a{href:"#{url_for("/columns")}"}
-      Columns
-  %li
-    %a{href:"#{url_for("/query")}"}
-      Query
+    .dropdown
+      %button.btn.btn-default.dropdown-toggle{type: "button", id:"links", data:{toggle: "dropdown"}, aria:{expanded:"true"}}
+        
+        %span.caret
+      %ul.dropdown-menu{role:"menu", aria:{labelledby:"links"}}
+        %li{role:"presentation"}
+          %a{href:"#{url_for("/tables")}"}
+            Tables
+        %li{role:"presentation"}
+          %a{href:"#{url_for("/views")}"}
+            Views
+        %li{role:"presentation"}
+          %a{href:"#{url_for("/routines")}"}
+            Routines
+        %li{role:"presentation"}
+          %a{href:"#{url_for("/columns")}"}
+            Columns
+        %li{role:"presentation"}
+          %a{href:"#{url_for("/query")}"}
+            Query
+        %li
+          %a{href:"#{url_for("/connections")}"}
+            Connections
   %form.navbar-form.navbar-left{id: "search", action: "#{url_for("/search")}", method: "GET"}
     .form-group
       %input.form-control#query{type: "TEXT", name: "query", autofocus: true, placeholder: "Search"}
