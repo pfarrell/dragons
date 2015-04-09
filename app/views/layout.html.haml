@@ -24,6 +24,7 @@
       .collapse.navbar-collapse#navbar-collapse
         =haml :'partials/nav' if connected?
     .container#content
+      =yield
       -unless notes.nil? || notes.empty?
         %h3
           Notes
@@ -31,7 +32,6 @@
           -notes.each do |note|
             %li
               =note.note
-      =yield
     .container.footer
       %hr
       A 
