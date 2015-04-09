@@ -1,5 +1,5 @@
 class View
   def self.search(conn, query)
-    conn.views.select{|table| table =~/query/i}
+    conn.views.select{|view| view =~/#{query}/i}
   end
 end
