@@ -1,14 +1,5 @@
-%img.headerimg{src: "/img/dragons.jpg"}
-%form{role: "form", action: "database", method: "POST"}
-  .form-group
-    %label{for: "conn"}
-      Connection String
-    %input.form-control{type: "text", name:"conn", placeholder:"Enter your connection string"}
-  %button.btn.btn-default{type:"submit"}
-    Login
-  %hr
-  %h4
-    Recent Connections
+%h2
+  Connections
 .container
   -connections.each do |conn|
     .row

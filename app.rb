@@ -12,6 +12,7 @@ class App < Sinatra::Application
   helpers Sinatra::UrlForHelper
   helpers Sinatra::Cookies
   register Sinatra::RespondTo
+  use Rack::MethodOverride
 
   enable :sessions
   set :session_secret, ENV["APP_SESSION_SECRET"] || "youshouldreallychangethis"
