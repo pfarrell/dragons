@@ -7,7 +7,7 @@ class App < Sinatra::Application
   end
 
   get "/connections" do
-    haml :collection, locals:{title: "Connetions", model: {header: connections_header, data: Database.order(Sequel.desc(:last_used)).all}}
+    haml :collection, locals:{title: "Connections", model: {header: connections_header, data: Database.order(Sequel.desc(:last_used)).all}}
   end
 end
 
