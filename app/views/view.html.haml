@@ -1,0 +1,70 @@
+%h2 
+  #{view.name}
+.container
+  .row
+    .col-md-4
+      %h4 
+        Fields
+      %view.view.view-condensed
+        %thead
+          %tr
+            -view_struct[:header].each do |header|
+              %th
+                =header[0]
+        %tbody
+          -view_struct[:data].each do |defn|
+            %tr
+              -view_struct[:header].each do |name, prop|
+                %td
+                  .view-data
+                    -if prop[:link].nil?
+                      =prop[:value].call(defn)
+                    -else
+                      %a{href:"#{prop[:link].call(defn)}"}
+                        =prop[:value].call(defn)
+    .col-md-4
+      %h4 
+        Indexes
+      -if view.indexes.nil? || view.indexes.length < 1
+        %h5
+          No Indexes
+      -else
+        %view.view.view-condensed
+          %thead
+            %tr
+              -index_struct[:header].each do |header|
+                %th
+                  =header[0]
+          %tbody
+            -index_struct[:data].each do |defn|
+              %tr
+                -index_struct[:header].each do |name, prop|
+                  %td
+                    .view-data
+                      =prop[:value].call(defn)
+    .col-md-4
+      %h4 
+        Routines
+      -if view.routines.nil? || view.routines.length < 1
+        %h5
+          No referencing routines
+      -else
+        =haml :'partials/lambda_list', locals: {model: routine_struct}
+  .row 
+    .col-md-12
+      %h4 
+        Sample Data
+      -unless view.data.nil? || view.data.length < 1
+        %view.view.view-condensed
+          %thead
+            %tr
+              -view.data(5).first.each do |k,v|
+                %th
+                  =k
+          %tbody
+            -view.data(5).each do |row|
+              %tr
+                -row.each do |k,v|
+                  %td
+                    =v
+         
