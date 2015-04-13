@@ -14,6 +14,10 @@ class Database < Sequel::Model
     Table.new(Sequel.connect(conn), name)
   end
 
+  def view(name)
+    View.new(Sequel.connect(conn), name)
+  end
+
   def adapter
     conn["adapter"]
   end
