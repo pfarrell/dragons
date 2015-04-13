@@ -31,7 +31,7 @@ class View
   end
 
   def definition
-    Sequel.connect(conn).fetch("Select view_definition from information_schema.views where view_name = #{@name}")
+    conn.fetch("Select view_definition from information_schema.views where table_name = '#{@name}'").first[:view_definition]
   end
 
   def routines
