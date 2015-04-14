@@ -10,7 +10,7 @@
         -unless query.nil?
           =query.gsub(/^[ \t]*/, "\t")
       .submit
-        %button.btn.btn-primary#submit{type:"submit", value:"Query", onClick:"javascript:run_query($('textarea#query').val())"}
+        %button.btn.btn-primary#submit{type:"submit", value:"Query", onClick:"javascript:run_query(get_query())"}
           Submit
   .row
     .col-md-12
@@ -52,4 +52,21 @@
     });
 
   }
+
+  function get_query() {
+    var query = getSelection($('textarea#query')[0]);
+    if(query == "") {
+      query = $('textarea#query').val();
+    }
+    return query;
+  }
+
+  function getSelection(field) {
+    return field.value.substring(field.selectionStart, field.selectionEnd);
+  }
         
+  $(document).keydown(function(e) {
+    if(e.which == 82 && e.ctrlKey){
+      run_query(get_query());
+    }
+  });
