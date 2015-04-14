@@ -39,6 +39,9 @@
   }
 
   function run_query(query) {
+    var field = $('textarea#query')[0]
+    var start = field.selectionStart;
+    var end = field.selectionEnd;
     $.ajax({
       method: "POST",
       url: "/query",
@@ -46,11 +49,12 @@
     })
     .done(function(msg) {
       handle_results(msg);
+      select(field, start, end);
     })
     .fail(function(xhr, status, msg) {
       handle_failure(status, xhr.responseJSON.error_message);
+      select(field, start, end);
     });
-
   }
 
   function get_query() {
@@ -59,6 +63,24 @@
       query = $('textarea#query').val();
     }
     return query;
+  }
+
+  function select(field, start, end) {
+    if( field.createTextRange ) {
+      var selRange = field.createTextRange();
+      selRange.collapse(true);
+      selRange.moveStart('character', start);
+      selRange.moveEnd('character', end);
+      selRange.select();
+      field.focus();
+    } else if( field.setSelectionRange ) {
+      field.focus();
+      field.setSelectionRange(start, end);
+    } else if( typeof field.selectionStart != 'undefined' ) {
+      field.selectionStart = start;
+      field.selectionEnd = end;
+      field.focus();
+    }
   }
 
   function getSelection(field) {
