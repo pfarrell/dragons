@@ -5,9 +5,13 @@ class App < Sinatra::Application
 
   post "/query" do
     begin
-    haml :query, locals: { query: params[:query], results: Database[session[:db]].run_query(params[:query]).all, error: nil }
+      q=Database[session[:db]].run_query(params[:query])
     rescue Exception => ex
-      haml:query, locals: {query: params[:query], results: nil, error: ex.message} 
+      haml :query, locals: {query: params[:query], results: nil, error: ex.message} 
+    end
+    respond_to do |wants|
+      wants.html{haml :query, locals: { query: params[:query], results: q.all, error: nil }}
+      wants.json{ {query: params[:query], columns: q.columns, data: q.all}.to_json }
     end
   end
 end

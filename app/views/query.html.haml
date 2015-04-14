@@ -6,30 +6,42 @@
     .col-md-12
       %h2
         Query
-      %form{action:"/query", method:"POST"}
-        %textarea#query.query{rows:"10", name:"query", autofocus: true}
-          -unless query.nil?
-            =query.gsub(/^[ \t]*/, "\t")
-        .submit
-          %button.btn.btn-primary{type:"submit", value:"submit"}
-            Submit
--unless results.nil?
+      %textarea#query.query{rows:"10", name:"query", autofocus: true}
+        -unless query.nil?
+          =query.gsub(/^[ \t]*/, "\t")
+      .submit
+        %button.btn.btn-primary{type:"submit", value:"Query", onClick:"javascript:run_query($('textarea#query').val())"}
+          Submit
   .row
     .col-md-12
-      %h4
-        Results (#{results.length} records)
-      -unless results.length < 1
-        %table.table.table-condensed
-          %thead
-            %tr
-              -results.first.keys.each do |k|
-                %th
-                  =k
-          %tbody
-            -results.each do |row|
-              %tr
-                -row.each do |k,v|
-                  %td
-                    =v
-         
+      #results
+:javascript
+  function handle_results(data) {
+    $('#results').empty();
+    var headers=[], rows={}
+
+     var rowHtml='<tr><th>'+data.columns.join('</th><th>')+'</th></tr>';
+     $.each(data.data, function(idx,row) {
+       rowHtml +='<tr>'
+       $.each(data.columns, function(idx, col) {
+         rowHtml += "<td>" + row[col] + "</td>";
+       });
+       rowHtml +='</tr>';
+     });
+
+     $('#results').append("<h2>Results (" + data.data.length + " rows)");
+     $('#results').append("<table class='table table-condensed'>" + rowHtml + "</table>");
+  }
+
+  function run_query(query) {
+    $.ajax({
+      method: "POST",
+      url: "/query.json",
+      data: {query: query}
+    })
+    .done(function(msg) {
+      handle_results(msg);
+      console.log(msg);
+    });
+  }
         
