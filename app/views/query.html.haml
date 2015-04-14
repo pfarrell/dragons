@@ -29,7 +29,7 @@
        rowHtml +='</tr>';
      });
 
-     $('#results').append("<row><div class='col-md-4'><span class='h3'>Results (" + data.data.length + " rows)</span></div><div class='col-md-8'><span class='pull-right'>" + data.query + "</span></div></row>");
+     $('#results').append("<row><div class='col-md-4'><span class='h3'>Results (" + data.data.length + " rows)</span></div><div class='col-md-8'><div class='pull-right'><p>" + data.query + "<p><p>" + new Date() + "</p></div></div></row>");
      $('#results').append("<row><table class='table table-condensed'>" + rowHtml + "</table></row>");
   }
 
@@ -91,5 +91,4 @@
     if((e.which == 82 && e.ctrlKey) || (e.which == 69 && e.metaKey)){
       run_query(get_query());
     }
-    console.log(e.which);
   });
