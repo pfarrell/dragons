@@ -33,15 +33,23 @@
      $('#results').append("<table class='table table-condensed'>" + rowHtml + "</table>");
   }
 
+  function handle_failure(status, data) {
+    $('#results').empty();
+    $('#results').append("<div><span class='glyphicon glyphicon-thumbs-down'>" + status + ":</span><span>" + data + "</span></div>");
+  }
+
   function run_query(query) {
     $.ajax({
       method: "POST",
-      url: "/query.json",
+      url: "/query",
       data: {query: query}
     })
     .done(function(msg) {
       handle_results(msg);
-      console.log(msg);
+    })
+    .fail(function(xhr, status, msg) {
+      handle_failure(status, msg);
     });
+
   }
         

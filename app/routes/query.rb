@@ -4,14 +4,15 @@ class App < Sinatra::Application
   end
 
   post "/query" do
+    content_type :json
+    require 'byebug'
+    byebug
     begin
       q=Database[session[:db]].run_query(params[:query])
+      return {query: params[:query], columns: q.columns, data: q.all}
     rescue Exception => ex
-      haml :query, locals: {query: params[:query], results: nil, error: ex.message} 
-    end
-    respond_to do |wants|
-      wants.html{haml :query, locals: { query: params[:query], results: q.all, error: nil }}
-      wants.json{ {query: params[:query], columns: q.columns, data: q.all}.to_json }
+      status 500
+      return {error_message: ex.message}.to_json
     end
   end
 end
