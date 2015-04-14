@@ -88,7 +88,8 @@
   }
         
   $(document).keydown(function(e) {
-    if(e.which == 82 && e.ctrlKey){
+    if((e.which == 82 && e.ctrlKey) || (e.which == 69 && e.metaKey)){
       run_query(get_query());
     }
+    console.log(e.which);
   });
