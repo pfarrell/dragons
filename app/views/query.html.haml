@@ -29,7 +29,7 @@
        rowHtml +='</tr>';
      });
 
-     $('#results').append("<h2>Results (" + data.data.length + " rows)");
+     $('#results').append("<div><span class='h3'>Results (" + data.data.length + " rows)</span><span class='pull-right'>" + data.query + "</span></div>");
      $('#results').append("<table class='table table-condensed'>" + rowHtml + "</table>");
   }
 
