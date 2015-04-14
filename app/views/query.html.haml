@@ -10,7 +10,7 @@
         -unless query.nil?
           =query.gsub(/^[ \t]*/, "\t")
       .submit
-        %button.btn.btn-primary{type:"submit", value:"Query", onClick:"javascript:run_query($('textarea#query').val())"}
+        %button.btn.btn-primary#submit{type:"submit", value:"Query", onClick:"javascript:run_query($('textarea#query').val())"}
           Submit
   .row
     .col-md-12
@@ -29,13 +29,13 @@
        rowHtml +='</tr>';
      });
 
-     $('#results').append("<div><span class='h3'>Results (" + data.data.length + " rows)</span><span class='pull-right'>" + data.query + "</span></div>");
-     $('#results').append("<table class='table table-condensed'>" + rowHtml + "</table>");
+     $('#results').append("<row><div class='col-md-4'><span class='h3'>Results (" + data.data.length + " rows)</span></div><div class='col-md-8'><span class='pull-right'>" + data.query + "</span></div></row>");
+     $('#results').append("<row><table class='table table-condensed'>" + rowHtml + "</table></row>");
   }
 
   function handle_failure(status, data) {
     $('#results').empty();
-    $('#results').append("<div><span class='glyphicon glyphicon-thumbs-down'>" + status + ":</span><span>" + data + "</span></div>");
+    $('#results').append("<div><button class='btn btn-sm btn-danger'><span class='glyphicon glyphicon-warning-sign'></span></button><span class='lead'>" + data + "</span></div>");
   }
 
   function run_query(query) {
@@ -48,7 +48,7 @@
       handle_results(msg);
     })
     .fail(function(xhr, status, msg) {
-      handle_failure(status, msg);
+      handle_failure(status, xhr.responseJSON.error_message);
     });
 
   }
