@@ -61,6 +61,11 @@ class App < Sinatra::Application
     def current_connection
       Database[session[:db]]
     end
+
+    def host
+      ret= session[:db].nil? ? "Unconnected" : Database[session[:db]].host
+    end
+
   end
 end
 
