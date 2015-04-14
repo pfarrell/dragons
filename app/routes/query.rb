@@ -5,13 +5,12 @@ class App < Sinatra::Application
 
   post "/query" do
     content_type :json
-    require 'byebug'
-    byebug
     begin
       q=Database[session[:db]].run_query(params[:query])
-      return {query: params[:query], columns: q.columns, data: q.all}
+      status 200
+      return {query: params[:query], columns: q.columns, data: q.all}.to_json
     rescue Exception => ex
-      status 500
+      status 400
       return {error_message: ex.message}.to_json
     end
   end
