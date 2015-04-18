@@ -26,10 +26,6 @@ class View
     @conn[@name.to_sym].first(count)
   end
 
-  def primary_key
-    columns.select{|x| x[1][:primary_key]}
-  end
-
   def definition
     conn.fetch("Select view_definition from information_schema.views where table_name = '#{@name}'").first[:view_definition]
   end
