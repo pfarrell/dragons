@@ -30,10 +30,15 @@ class App < Sinatra::Application
   end
 
   get "/views" do
-    props={}
-    props["view"]={value: lambda{|x| x}, link: lambda{|x| "/views/#{x}"}}
-
-    haml :collection, locals: {title: "Views", model: {header: props, data: Database[session[:db]].views.sort}}
+   data = Database[session[:db]].views.sort 
+   respond_to do |wants|
+     wants.json {data.to_json}
+     wants.html {
+       props={}
+       props["view"]={value: lambda{|x| x}, link: lambda{|x| "/views/#{x}"}}
+       haml :collection, locals: {title: "Views", model: {header: props, data: data}}
+     }
+   end
   end
 
   get "/views/:view_name" do
