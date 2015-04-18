@@ -17,7 +17,7 @@
           %a{href:"#{url_for("/database/#{conn.id}")}"}
             #{conn.database}
             %em.small
-              #{conn.database}
+              #{conn.host}
 :javascript
   function validate(db) {
     return confirm("Are you sure you wish to delete " + db);
