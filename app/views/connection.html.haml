@@ -6,7 +6,9 @@
       .col-md-8
         %form.form-inline{method:"POST", action:"#{url_for("/database/#{conn.id}")}", onsubmit: "return validate('#{conn.database}')"}
           %a{href:"#{url_for("/database/#{conn.id}")}"}
-            #{conn.adapter} #{conn.host}/#{conn.database}
+            #{conn.database} 
+            %em.small
+              #{conn.host}
           %input{type:"hidden", name:"_method", value:"delete"}
           %button.btn-xs.btn-danger.pull-right{type:"submit", title:"Delete #{conn.database} entry?"}
             %span.glyphicon.glyphicon-remove-sign

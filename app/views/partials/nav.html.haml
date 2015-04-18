@@ -7,7 +7,9 @@
       -connections.each do |conn|
         %li{role:"presentation"}
           %a{href:"#{url_for("/database/#{conn.id}")}", title: "#{conn.host}/#{conn.database}"}
-            =conn.database
+            #{conn.database} 
+            %em.small
+              #{conn.host}
   %li.dropdown
     %a.dropdown-toggle{href:"#{url_for("#{routes.first.path}")}", role: "button", id:"routes", data:{toggle: "dropdown"}, aria:{expanded:"false"}}
       =routes.first.title
