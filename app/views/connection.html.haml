@@ -3,7 +3,7 @@
 .container
   -connections.each do |conn|
     .row
-      .col-md-8
+      .col-md-4
         %form.form-inline{method:"POST", action:"#{url_for("/database/#{conn.id}")}", onsubmit: "return validate('#{conn.database}')"}
           %a{href:"#{url_for("/database/#{conn.id}")}"}
             #{conn.database} 
