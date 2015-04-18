@@ -93,7 +93,7 @@ describe 'App' do
 
   it "answers queries via query route" do
     setup_session(conn)
-    post "/query?query=test"
+    post "/query", query: "select 1"
     expect(last_response).to be_ok
   end
 
@@ -140,6 +140,22 @@ describe 'App' do
     setup_session(conn)
     get "/exception"
     expect(last_response.status).to eq(500)
+  end
+
+  it "has a views route" do
+    setup_session(conn)
+    get "/views"
+    expect(last_response).to be_ok
+  end
+
+  it "has a view route" do
+    setup_session(conn)
+    get "/views.json"
+    expect(last_response).to be_ok
+
+    hsh=JSON.parse(last_response.body)
+    get "/views/#{hsh.first}"
+    expect(last_response).to be_ok
   end
 
 end
