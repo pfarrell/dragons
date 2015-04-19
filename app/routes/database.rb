@@ -28,10 +28,10 @@ class App < Sinatra::Application
 
   post "/database" do
     db = Database.find_or_create(connection: params[:conn])
-    db.last_used=Time.now
-    db.save
     session[:db] = db.id
-    haml :collection, locals: { title: "Database", model: {header:stats_header, data: stats }} 
+    db.last_used = Time.now
+    db.save
+    redirect "/database"
   end
 
   delete "/database/:id" do
