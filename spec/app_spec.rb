@@ -4,7 +4,7 @@ require 'byebug'
 
 def setup_session(conn)
   post "/database?conn=#{conn}"
-  expect(last_response).to be_ok
+  #expect(last_response).to be_ok
 end
 
 
@@ -97,6 +97,12 @@ describe 'App' do
     expect(last_response).to be_ok
   end
 
+  it "handles bad queries via query route" do
+    setup_session(conn)
+    post "/query", query: "select blorg from bloog"
+    expect(last_response.status).to eq(400)
+  end
+
   it "has a routines.json route" do
     setup_session(conn)
     get "/routines.json"
@@ -106,6 +112,16 @@ describe 'App' do
   it "has a routines route" do
     setup_session(conn)
     get "/routines"
+    expect(last_response).to be_ok
+  end
+
+  it "has a routine route" do
+    setup_session(conn)
+    get "/routines.json"
+    expect(last_response).to be_ok
+
+    hsh=JSON.parse(last_response.body)
+    get "/routines/#{hsh.first}"
     expect(last_response).to be_ok
   end
 
@@ -156,6 +172,13 @@ describe 'App' do
     hsh=JSON.parse(last_response.body)
     get "/views/#{hsh.first}"
     expect(last_response).to be_ok
+  end
+
+  it "creates and deletes database connections" do
+    db = Database.find_or_create(connection: "test")
+    delete "/database/#{db.id}"
+    expect(last_response).to be_redirect
+
   end
 
 end
