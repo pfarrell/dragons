@@ -11,8 +11,6 @@ class App < Sinatra::Application
 
   post "/query" do
     content_type :json
-    require 'byebug'
-    byebug
     query_history = Query.new(query: params[:query])
     query_history.save
     begin
