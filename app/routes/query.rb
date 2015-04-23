@@ -6,7 +6,8 @@ class App < Sinatra::Application
   end
 
   get "/query" do 
-    haml :query, locals: { query: nil, results: nil, error: nil }
+    query = params[:history].nil? ? "" : Query[params[:history].to_i].query
+    haml :query, locals: { query: query, results: nil, error: nil }
   end
 
   post "/query" do
@@ -24,5 +25,14 @@ class App < Sinatra::Application
       status 400
       return {error_message: ex.message}.to_json
     end
+  end
+
+  get "/query/history" do
+    redirect url_for("/query/history/1")
+  end
+
+  get "/query/history/:page" do
+    page = params[:page].to_i
+    haml :query_history, locals: {queries: Query.order(Sequel.desc(:id)).paginate(page, 25), nxt: page + 1, prev: page -1}
   end
 end

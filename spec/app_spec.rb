@@ -181,4 +181,13 @@ describe 'App' do
 
   end
 
+  it "has a query history" do
+    get "/query/history"
+    expect(last_response).to be_redirect
+  end
+
+  it "has a query history" do
+    get "/query/history/1"
+    expect(last_response).to be_ok
+  end
 end

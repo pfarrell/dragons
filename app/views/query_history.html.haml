@@ -1,0 +1,12 @@
+-if prev < 1
+  %a.btn.btn-default.disabled{href:"#{url_for("/query/history/#{prev}")}"}
+    <<
+-else
+  %a.btn.btn-primary{href:"#{url_for("/query/history/#{prev}")}"}
+    <<
+%a.btn.btn-primary{href:"#{url_for("/query/history/#{nxt}")}"}
+  >>
+-queries.each do |query|
+  .query
+    %a{href:"#{url_for("/query?history=#{query.id}")}"}
+      =query.query
