@@ -1,6 +1,7 @@
 require 'json'
 class Database < Sequel::Model
  one_to_many :paths 
+ one_to_many :queries
 
   def conn
     JSON.parse(self.connection)

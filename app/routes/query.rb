@@ -12,7 +12,7 @@ class App < Sinatra::Application
 
   post "/query" do
     content_type :json
-    query_history = Query.new(query: params[:query])
+    query_history = Query.new(query: params[:query], database: Database[session[:db]])
     query_history.save
     begin
       q=[]
@@ -33,6 +33,6 @@ class App < Sinatra::Application
 
   get "/query/history/:page" do
     page = params[:page].to_i
-    haml :query_history, locals: {queries: Query.order(Sequel.desc(:id)).paginate(page, 25), nxt: page + 1, prev: page -1}
+    haml :query_history, locals: {queries: Query.where(database_id: session[:db]).order(Sequel.desc(:id)).paginate(page, 25), nxt: page + 1, prev: page -1}
   end
 end
