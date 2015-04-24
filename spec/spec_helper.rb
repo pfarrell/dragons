@@ -103,5 +103,9 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 #=end
   config.include RSpecMixin
+
+  config.around(:each) do |example|
+    DB.transaction(:rollback=>:always, :auto_savepoint=>true){example.run}
+  end
 end
 require './app'
