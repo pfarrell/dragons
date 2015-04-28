@@ -35,6 +35,8 @@ Things to come
    brew install freetds
    bundle install
    bower install
+   bundle exec rake db:migrate
+   bundle exec ruby ./db/seed/routes.rb
    bundle exec rackup
 ```
 
