@@ -1,0 +1,55 @@
+%h2
+  Connections
+.container
+  -connections.each do |conn|
+    .row
+      .col-md-4
+        %form.form-inline{method:"POST", action:"#{url_for("/database/#{conn.id}")}", onsubmit: "return validate('#{conn.database}')"}
+          %a{href:"#{url_for("/database/#{conn.id}")}"}
+            #{conn.database} 
+            %em.small
+              #{conn.host}
+          %input{type:"hidden", name:"_method", value:"delete"}
+          %button.btn-xs.btn-danger.pull-right{type:"submit", title:"Delete #{conn.database} entry?"}
+            %span.glyphicon.glyphicon-remove-sign
+  .row
+    .col-md-6
+      %form.form-inline{method:"POST", action:"#{url_for("/connections")}"}
+        .input-group.input-group-lg
+          %span.input-group-addon
+            Adapter
+          %input.form-control{type:"text", name:"adapter"}
+            //%option{name:"Sql Server", value:"tinytds"}
+            //%option{name:"MySql", value:"mysql2"}
+            //%option{name:"Postgres", value:"postgres"}
+        .input-group.input-group-lg
+          %span.input-group-addon
+            Host
+          %input.form-control{type:"text", name:"host"}
+        .input-group.input-group-lg
+          %span.input-group-addon
+            Database
+          %input.form-control{type:"text", name:"database"}
+        .input-group.input-group-lg
+          %span.input-group-addon
+            Port
+          %input.form-control{type:"text", name:"port"}
+        .input-group.input-group-lg
+          %span.input-group-addon
+            Timeout
+          %input.form-control{type:"text", name:"timeout"}
+        .input-group.input-group-lg
+          %span.input-group-addon
+            Username
+          %input.form-control{type:"text", name:"username"}
+        .input-group.input-group-lg
+          %span.input-group-addon
+            Password
+          %input.form-control{type:"text", name:"password"}
+        .submit
+          %input.btn.btn-default.btn-lg{type:"Submit", value:"Save"}
+
+:javascript
+  function validate(db) {
+    return confirm("Are you sure you wish to delete " + db);
+  }
