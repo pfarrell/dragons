@@ -36,8 +36,7 @@ class App < Sinatra::Application
 
   delete "/database/:id" do
     Database[params[:id]].delete
-    session[:db] = nil
-    redirect("/")
+    redirect(request.env["HTTP_REFERER"])
   end
 
 end
