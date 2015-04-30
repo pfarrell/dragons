@@ -190,4 +190,10 @@ describe 'App' do
     get "/query/history/1"
     expect(last_response).to be_ok
   end
+
+  it "creates new connections" do
+    post "/connections", {test:"test"}
+    expect(Database.last.connection).to eq('{"test":"test"}')
+    expect(last_response).to be_ok
+  end
 end
