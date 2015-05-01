@@ -1,6 +1,6 @@
 <p align="center"><img src="https://patf.net/images/dragons.jpg" alt="Here Be Dragons!"></p>
 
-#Dragons
+#Dragons <img src="https://raw.githubusercontent.com/pfarrell/bemused/master/coverage/coverage-badge.png" height="20" >
 
 How many sql query tools have I created? Like 4?
 

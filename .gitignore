@@ -1,5 +1,6 @@
 public/libs
 vendor
-coverage
+coverage/**/*
+!coverage/coverage-badge.png
 .bundle
 config.db
