@@ -40,6 +40,11 @@ Things to come
    bundle exec rackup
 ```
 
+##Features
+* Query Support
+* Search across metadata
+* Leave notes on anything
+
 #Connection Strings
 Connection strings should be entered as JSON structures. I know it's a bit weird, but this is a homebrewed project that's not quite there yet.  Also, it makes it much more flexible.
 
