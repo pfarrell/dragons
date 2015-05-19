@@ -13,6 +13,7 @@ Features
   * column name to table view
   * attach notes to any object
   * query interface
+  * history of queries
 
 Planned
   * syntax highlighting for sql
