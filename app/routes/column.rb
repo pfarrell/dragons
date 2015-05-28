@@ -2,7 +2,7 @@ class App < Sinatra::Application
   def column_hash
     summary = Hash.new{|hash, key| hash[key] = Array.new;}
     Database[session[:db]].columns.map{|x| summary[x[:column_name].downcase] << x[:table_name]}
-    summary
+    summary.sort.to_h
   end
 
   get "/columns" do
