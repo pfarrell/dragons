@@ -6,7 +6,8 @@ class App < Sinatra::Application
   end
 
   get "/query" do 
-    query = params[:history].nil? ? "" : Query[params[:history].to_i].query
+    query = Query[params[:history].to_i].query unless params[:history].nil?
+    query ||= params[:q]
     haml :query, locals: { query: query, results: nil, error: nil }
   end
 

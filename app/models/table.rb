@@ -10,6 +10,16 @@ class Table
     conn.tables.select{|table| table =~/#{query}/i}
   end
 
+  def select
+    cols = columns.map{|k,v| k.to_s}.join(", ")
+    case @conn["adapter"]
+      when "tinytds"
+        "SELECT TOP 100 #{cols} FROM #{name}"
+      else
+        "SELECT #{cols} FROM #{name} LIMIT 100"
+    end
+  end
+
   def columns
     @conn.schema(@name)
   end

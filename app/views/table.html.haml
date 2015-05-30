@@ -1,5 +1,8 @@
 %h2 
   #{table.name}
+  %small
+    %a{href: "../query?q=#{table.select}"}
+      Select
 .container
   .row
     .col-md-4
