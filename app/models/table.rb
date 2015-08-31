@@ -20,6 +20,12 @@ class Table
     end
   end
 
+  def create
+    "CREATE TABLE #{name} (\n"\
+    "#{columns.map{|k,v| v.inspect}.join(", ")}"\
+    ")"
+  end
+
   def columns
     @conn.schema(@name)
   end
