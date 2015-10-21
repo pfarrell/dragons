@@ -3,6 +3,7 @@ class App < Sinatra::Application
     props={}
     props["field"]={value: lambda{|x| x[0]}, link: lambda{|x| "/columns/#{x[0]}"}}
     props["type"]={value: lambda{|x| x[1][:db_type]}}
+    props["size"]={value: lambda{|x| x[1][:column_size] || x[1][:max_chars]}}
     props["primary key?"]={value: lambda{|x| x[1][:primary_key]}}
     props
   end

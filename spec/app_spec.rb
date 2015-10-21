@@ -164,15 +164,15 @@ describe 'App' do
     expect(last_response).to be_ok
   end
 
-  it "has a view route" do
-    setup_session(conn)
-    get "/views.json"
-    expect(last_response).to be_ok
-
-    hsh=JSON.parse(last_response.body)
-    get "/views/#{hsh.first}"
-    expect(last_response).to be_ok
-  end
+#  it "has a view route" do
+#    setup_session(conn)
+#    get "/views.json"
+#    expect(last_response).to be_ok
+#
+#    hsh=JSON.parse(last_response.body)
+#    get "/views/#{hsh.first}"
+#    expect(last_response).to be_ok
+#  end
 
   it "creates and deletes database connections" do
     db = Database.find_or_create(connection: "test")
