@@ -4,3 +4,4 @@ coverage/**/*
 !coverage/coverage-badge.png
 .bundle
 config.db
+nohup.out
