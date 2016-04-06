@@ -1,20 +1,19 @@
 -unless error.nil?
   .alert-error
     #{error}
-.container
-  .row
-    .col-md-12
-      %h2
-        Query
-      %textarea#query.query{rows:"10", name:"query", autofocus: true}
-        -unless query.nil?
-          =query.gsub(/^[ \t]*/, "\t")
-      .submit
-        %button.btn.btn-primary#submit{type:"submit", value:"Query", onClick:"javascript:run_query(get_query())"}
-          Submit
-  .row
-    .col-md-12
-      #results
+.row
+  .col-md-12
+    %h2
+      Query
+    %textarea#query.query{rows:"10", name:"query", autofocus: true}
+      -unless query.nil?
+        =query.gsub(/^[ \t]*/, "\t")
+    .submit
+      %button.btn.btn-primary#submit{type:"submit", value:"Query", onClick:"javascript:run_query(get_query())"}
+        Submit
+.row
+  .col-md-12
+    #results
 :javascript
   function handle_results(data) {
     $('#results').empty();

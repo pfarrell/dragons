@@ -23,7 +23,7 @@
           Dragons
       .collapse.navbar-collapse#navbar-collapse
         =haml :'partials/nav' if connected?
-    .container#content
+    .container-fluid#content
       =yield
       -unless notes.nil? || notes.empty?
         %h3
@@ -32,9 +32,9 @@
           -notes.each do |note|
             %li
               =note.note
-    .container.footer
+    .container-fluid.footer
       %hr
-      A 
+      A
       %a{href:"https://patf.net"}
         patf
       joint
