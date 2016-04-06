@@ -13,7 +13,6 @@ gem 'sqlite3'
 
 
 gem 'pg'
-gem 'tiny_tds'
 gem 'mysql2'
 
 gem 'haml'
