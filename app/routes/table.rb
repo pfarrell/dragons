@@ -20,7 +20,7 @@ class App < Sinatra::Application
     props["name"]={value: lambda{|x| x}, link: lambda{|x| "/routines/#{x}"}}
     props
   end
-  
+
   def table_foreign_key_header
     props={}
     props["Name"]={value: lambda{|x| x[:name]}}
@@ -29,7 +29,7 @@ class App < Sinatra::Application
     props["Foreign Column"]={value: lambda{|x| x[:key].join(", ")}}
     props
   end
-  
+
   get "/tables/:table_name" do
     table = Database[session[:db]].table(params[:table_name])
     haml :table, locals: {
@@ -42,14 +42,8 @@ class App < Sinatra::Application
   end
 
   get "/tables" do
-    data = Database[session[:db]].tables.sort
-    respond_to do |wants|
-      wants.json { data.to_json }
-      wants.html {
-        props={}
-        props["Table Name"]={value: lambda{|x| x}, link: lambda{|x| "/tables/#{x}"}}
-        haml :tables, locals: {model: {header: props, data: Database[session[:db]].tables.sort}}
-      }
-    end
+    props={}
+    props["Table Name"]={value: lambda{|x| x}, link: lambda{|x| "/tables/#{x}"}}
+    haml :tables, locals: {model: {header: props, data: Database[session[:db]].tables.sort}}
   end
 end

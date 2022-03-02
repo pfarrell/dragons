@@ -7,10 +7,7 @@ class App < Sinatra::Application
 
   get "/columns" do
     data = column_hash.to_a.sort.to_h
-    respond_to do |wants|
-      wants.html { haml :columns, locals: { columns: data } }
-      wants.json { data.to_json }
-    end
+    haml :columns, locals: { columns: data }
   end
 
   get "/columns/:column_name" do
