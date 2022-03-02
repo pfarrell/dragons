@@ -5,7 +5,6 @@ gem 'rake'
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'emk-sinatra-url-for'
-gem 'sinatra-respond_to'
 
 gem 'sequel'
 
@@ -13,7 +12,6 @@ gem 'sqlite3'
 
 
 gem 'pg'
-gem 'mysql2'
 
 gem 'haml'
 

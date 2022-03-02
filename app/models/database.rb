@@ -1,6 +1,6 @@
 require 'json'
 class Database < Sequel::Model
- one_to_many :paths 
+ one_to_many :paths
  one_to_many :queries
 
   def conn
@@ -26,7 +26,7 @@ class Database < Sequel::Model
   def host
     conn["host"]
   end
-  
+
   def database
     conn["database"]
   end

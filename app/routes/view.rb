@@ -19,7 +19,7 @@ class App < Sinatra::Application
     props["name"]={value: lambda{|x| x}, link: lambda{|x| "/routines/#{x}"}}
     props
   end
-  
+
   def view_foreign_key_header
     props={}
     props["Name"]={value: lambda{|x| x[:name]}}
@@ -30,15 +30,10 @@ class App < Sinatra::Application
   end
 
   get "/views" do
-   data = Database[session[:db]].views.sort 
-   respond_to do |wants|
-     wants.json {data.to_json}
-     wants.html {
-       props={}
-       props["view"]={value: lambda{|x| x}, link: lambda{|x| "/views/#{x}"}}
-       haml :collection, locals: {title: "Views", model: {header: props, data: data}}
-     }
-   end
+   data = Database[session[:db]].views.sort
+   props={}
+   props["view"]={value: lambda{|x| x}, link: lambda{|x| "/views/#{x}"}}
+   haml :collection, locals: {title: "Views", model: {header: props, data: data}}
   end
 
   get "/views/:view_name" do
